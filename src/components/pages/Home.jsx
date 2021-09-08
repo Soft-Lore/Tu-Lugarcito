@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, ContainerCards, NavBar } from '../organisms/index'
+import { Header, ContainerCards, NavBar, FormContact, Footer } from '../organisms/index'
 
 export default function Home() {
     return (
@@ -7,6 +7,8 @@ export default function Home() {
             <NavBar />
             <Header />
             <ContainerCards />
+            <FormContact />
+            <Footer />
         </div>
     )
 }

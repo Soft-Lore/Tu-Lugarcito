@@ -1,0 +1,104 @@
+@import "../base/colors.scss";
+@import "../base/font.scss";
+
+.container-form {
+    width: 100%;
+    background-color: #16162b;
+    padding: 40px 0;
+}
+
+.form {
+    margin: auto;
+    width: 95%;
+    position: relative;
+    padding-bottom: 40px;
+    margin-top: 30px;
+}
+
+.title-form {
+    padding-top: 40px;
+    color: $colorSecondary;
+    font-size: 1.4rem;
+    
+    font-family: $item;
+    @media screen and (max-width: 450px) {
+        font-size: 1rem;
+    }
+}
+
+
+.subtitle-form { 
+    font-family: "Teko", sans-serif;
+    font-size: 1.7rem;
+    color:  $colorSecondary;
+
+    @media screen and (max-width: 450px) {
+        font-size: 1.3rem;
+    }
+}
+
+.title-form,
+.subtitle-form {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.form-item {
+    display: inline-block;
+    width: 49%;
+    margin-left: 5px;
+
+    @media screen and (max-width: 700px) {
+        display: block;
+        width: 101%;
+    }
+}
+
+.form-input,
+.form-input__message {
+    outline: none;
+    border: none;
+}
+
+.form-input {
+    width: 98%;
+    padding: 10px 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.form-label,
+.form-label__message {
+    display: block;
+    color:  $colorSecondary;
+    font-family: $cardPrice;
+}
+
+.form-input__message {
+    width: 99%;
+    border-radius: 5px;
+    min-height: 140px;
+    margin: 5px 0;
+}
+
+.form-button__send {
+    display: block;
+    position: absolute;
+    right: 10px;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid  $colorSecondary;
+    background-color: transparent;
+    color:  $colorSecondary;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color .3s ease;
+
+    @media screen and (min-width: 700px) {
+        &:hover {
+            background-color: #333369;
+        }
+    }
+}
