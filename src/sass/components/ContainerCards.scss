@@ -1,0 +1,41 @@
+@import "../base/colors.scss";
+@import "../base/font.scss";
+
+.main-sites {
+  max-width: 100%;
+  margin: 20px 50px;
+
+  .main-sites__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: $border;
+  }
+
+  @media screen and (max-width: 500px) {
+    margin: 10px;
+  }
+}
+
+.sites-header__lbl {
+  font-family: $item;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.sites-header__select {
+  padding: 8px;
+  background-color: $primary;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.main-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

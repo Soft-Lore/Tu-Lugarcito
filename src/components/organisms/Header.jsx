@@ -1,11 +1,9 @@
 import React from "react";
-import { NavBar } from "./index";
 import HomeImage from "../../assets/img/home.svg";
 
 export default function Header() {
   return (
     <header>
-      <NavBar />
       <section className="header">
         <article className="header-content header-content__one">
           <h2 className="header-content__title">
