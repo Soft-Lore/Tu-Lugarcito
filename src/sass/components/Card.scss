@@ -85,6 +85,11 @@
   @media screen and (max-width: 400px) {
     min-height: 250px;
   }
+  @media screen and (max-width: 300px) {
+    width: 250px;
+    min-height: 180px;
+    border-radius: 10px;
+  }
 }
 
 .card-image {
@@ -118,6 +123,9 @@
 
   @media screen and (max-width: 400px) {
     height: 200px;
+  }
+  @media screen and (max-width: 300px) {
+    height: 140px;
   }
 }
 
@@ -157,6 +165,9 @@
   @media screen and (max-width: 400px) {
     padding: 5px 0;
   }
+  @media screen and (max-width: 300px) {
+    padding: 3px 0;
+  }
 }
 
 .card-footer__icons {
@@ -168,12 +179,20 @@
   margin: 0;
   font-family: $cardPrice;
   font-weight: bold;
+
+  @media screen and (max-width: 300px) {
+    font-size: .8rem;
+  }
 }
 
 .card-footer__location {
   font-size: 0.8rem;
   font-family: $cardSpan;
   color: #555;
+
+  @media screen and (max-width: 300px) {
+    font-size: .7rem;
+  }
 }
 
 .card-footer__room {
@@ -215,6 +234,10 @@
   @media screen and (max-width: 400px) {
     margin: 0 10px;
   }
+
+  @media screen and (max-width: 300px) {
+    margin: 0 8px;
+  }
 }
 
 .card-footer__icon {
@@ -234,6 +257,11 @@
   @media screen and (max-width: 400px) {
     width: 25px;
   }
+
+  @media screen and (max-width: 300px) {
+    width: 20px;
+  }
+  
 }
 
 .card-footer__button {
@@ -267,6 +295,9 @@
   @media screen and (max-width: 400px) {
     font-size: 1rem;
   }
+  @media screen and (max-width: 300px) {
+    font-size: .8rem;
+  }
 }
 
 .footer-button__icon {
@@ -281,5 +312,9 @@
 
   @media screen and (max-width: 400px) {
     width: 20px;
+  }
+
+  @media screen and (max-width: 300px) {
+    width: 17px;
   }
 }

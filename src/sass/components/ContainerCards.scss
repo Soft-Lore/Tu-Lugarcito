@@ -36,6 +36,7 @@
 
 .main-cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
+  column-gap: 10px;
 }

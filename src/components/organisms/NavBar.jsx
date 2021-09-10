@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import logo from '../../logo1.png'
 
 export default function NavBar() {
   const [menu, setMenu] = useState(false);
@@ -7,7 +8,7 @@ export default function NavBar() {
   return (
     <nav className="nav">
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Naruto_logo.svg/986px-Naruto_logo.svg.png"
+        src={logo}
         alt="logo"
         className="nav-logo"
       />
@@ -21,18 +22,6 @@ export default function NavBar() {
               : "nav-collapse__list nav-collapse__list-show"
           }
         >
-          <li>
-            <NavLink
-              className={
-                !menu
-                  ? "nav-collapse__list-item"
-                  : "nav-collapse__list-item nav-collapse__list-item__show"
-              }
-              to="/about"
-            >
-              Acerca de
-            </NavLink>
-          </li>
           <li>
             <NavLink
               className={
@@ -55,6 +44,19 @@ export default function NavBar() {
               to="/restaurants"
             >
               Restaurantes
+            </NavLink>
+          </li>
+          
+          <li>
+            <NavLink
+              className={
+                !menu
+                  ? "nav-collapse__list-item"
+                  : "nav-collapse__list-item nav-collapse__list-item__show"
+              }
+              to="/about"
+            >
+              Acerca de
             </NavLink>
           </li>
         </ul>
