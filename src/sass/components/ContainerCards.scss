@@ -1,9 +1,7 @@
-@import "../base/colors.scss";
-@import "../base/font.scss";
-
 .main-sites {
   max-width: 100%;
   margin: 20px 50px;
+  background-color: $backgroundPrimary;
 
   .main-sites__header {
     display: flex;
@@ -22,6 +20,7 @@
   font-family: $item;
   font-weight: bold;
   font-size: 1.1rem;
+  color: $color;
 }
 
 .sites-header__select {

@@ -1,12 +1,9 @@
-@import "../base/colors.scss";
-@import "../base/font.scss";
-
 .nav {
   position: sticky;
   top: 0;
   height: 50px;
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: $backgroundSecondary;
   border-bottom: 1px solid rgba(153, 153, 153, 0.486);
   display: grid;
   justify-content: space-around;
@@ -136,7 +133,7 @@
     position: fixed;
     right: 0;
     top: 50px;
-    background-color: #f2f2f2;
+    background-color: $backgroundSecondary;
     padding: 20px 20px 0 20px;
     border-top: 1px solid rgba(153, 153, 153, 0.486);
     padding-bottom: 25px;
