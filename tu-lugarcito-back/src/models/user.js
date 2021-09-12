@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      activate:{
+        type: DataTypes.BOOLEAN,
+        defaultValue:true,
+      },
       password: DataTypes.STRING,
     },
     {
@@ -33,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     try {
       const salt = await bcrypt.genSalt(10);
       const hashed_password = await bcrypt.hash(user.password, salt);
-      user.password ¡ hashed_passwordñ
+      user.password = hashed_password;
     } catch (error) {
       next(error);
     }

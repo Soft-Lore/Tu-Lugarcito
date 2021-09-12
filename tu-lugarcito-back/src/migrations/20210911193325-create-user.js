@@ -14,8 +14,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      code: {
-        type: Sequelize.STRING
+      activate: {
+        type: Sequelize.BOOLEAN,
+        defaultValue:true
       },
       verified: {
         type: Sequelize.BOOLEAN
