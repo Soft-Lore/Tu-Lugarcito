@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from '../../logo1.png'
+import logo from "../../logo3.png";
+import { BiHome } from "react-icons/bi";
+import { IoMdRestaurant } from "react-icons/io";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { FiMenu } from "react-icons/fi";
 
 export default function NavBar() {
   const [menu, setMenu] = useState(false);
 
   return (
     <nav className="nav">
-      <img
-        src={logo}
-        alt="logo"
-        className="nav-logo"
-      />
+      <img src={logo} alt="logo" className="nav-logo" />
       <div
         className={!menu ? "nav-collapse" : "nav-collapse nav-collapse__show"}
       >
@@ -31,6 +31,7 @@ export default function NavBar() {
               }
               to="/home"
             >
+              <BiHome />
               Inmuebles
             </NavLink>
           </li>
@@ -43,10 +44,11 @@ export default function NavBar() {
               }
               to="/restaurants"
             >
+              <IoMdRestaurant />
               Restaurantes
             </NavLink>
           </li>
-          
+
           <li>
             <NavLink
               className={
@@ -56,13 +58,16 @@ export default function NavBar() {
               }
               to="/about"
             >
+              <AiOutlineUsergroupAdd />
               Acerca de
             </NavLink>
           </li>
         </ul>
         <button className="nav-collapse__button">Registrarse</button>
       </div>
-      <div className="nav-menu" onClick={() => setMenu((m) => !m)} />
+      <div className="nav-menu" onClick={() => setMenu((m) => !m)}>
+        <FiMenu />
+      </div>
       <div
         className={menu ? "nav-menu__back" : ""}
         onClick={() => setMenu((m) => !m)}
