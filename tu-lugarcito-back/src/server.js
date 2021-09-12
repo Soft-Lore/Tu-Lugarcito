@@ -10,4 +10,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 
+app.use(require('./controllers/User/user.routes'));
+
 module.exports = app;
