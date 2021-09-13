@@ -5,15 +5,16 @@ exports.new_user = async (req, res) => {
   let body = req.body;
 
   try {
+    const role = await Role.create({ role: body.role });
+
     const user = await User.create({
       username: body.username,
       email: body.email,
       password: body.password,
+      roleid: role.id,
     });
 
-    const role = await Role.create({ role: body.role, userid: user.id });
-    
-    const token = generate_jwt_token(user,role);
+    const token = generate_jwt_token(user, role);
 
     res.status(201).json({
       ok: true,

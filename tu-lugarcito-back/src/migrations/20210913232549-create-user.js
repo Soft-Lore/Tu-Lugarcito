@@ -14,15 +14,17 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      password: {
+        type: Sequelize.STRING
+      },
       activate: {
-        type: Sequelize.BOOLEAN,
-        defaultValue:true
+        type: Sequelize.BOOLEAN
       },
       verified: {
         type: Sequelize.BOOLEAN
       },
-      password: {
-        type: Sequelize.STRING
+      roleid: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
