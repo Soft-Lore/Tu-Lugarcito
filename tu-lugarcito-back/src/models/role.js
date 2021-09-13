@@ -9,27 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Role.belongsTo(models.User, {
-        foreingKey: {
-          allowNull: false,
-        },
-      });
+      models.Role.hasmany(models.User);
     }
   }
   Role.init(
     {
-      role: {
-        type: DataTypes.ENUM("admin", "cliente"),
-        allowNull:false
-      },
-      userid: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Users",
-          key: "id",
-        },
-      },
+      role: DataTypes.ENUM("admin", "cliente"),
     },
     {
       sequelize,
