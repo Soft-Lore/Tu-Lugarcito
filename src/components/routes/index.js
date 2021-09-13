@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import { Home } from '../pages/index'
+import { Home, Register, Login } from '../pages/index'
 
 export default function Routes() {
     return (
@@ -9,8 +9,8 @@ export default function Routes() {
             <Switch>
                 <Redirect exact from="/" to="/home" />
                 <Route exact path="/home" component={Home}/>
-                <Route exact path="/login" component={() => <h1>Login</h1>}/>
-                <Route exact path="/register" component={() => <h1>Login</h1>}/>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/register" component={Register}/>
                 <Route exact component={() => <h1>Error 404</h1>}/>
             </Switch>
         </Router>

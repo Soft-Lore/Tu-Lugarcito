@@ -1,0 +1,62 @@
+.group-input,
+.group-btn {
+  display: flex;
+  width: 100%;
+  margin: 5px 0;
+  flex-direction: column;
+}
+
+.group-btn {
+  margin: 10px 0;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.control-input,
+.form-button {
+  position: relative;
+  margin-top: 5px;
+  padding: 12px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(153, 153, 153, 0.404);
+  background-color: rgba(199, 199, 199, 0.2);
+  font-size: 1rem;
+  color: #999;
+}
+
+.input {
+    top: 0;
+    position: absolute;
+    margin: 0 10px;
+    width: 85%;
+    height: 95%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-family: "Heebo", sans-serif;
+}
+
+.label {
+    position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  left: 10px;
+  color: #333;
+}
+
+.form-button {
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-button__primary {
+    background-color: $primary;
+    color: white;
+    border: none;
+}
+
+.form-button__secondary {
+    border-color: $primary;
+    color: $primary;
+}

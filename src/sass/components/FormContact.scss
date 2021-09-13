@@ -8,7 +8,7 @@
     }
 }
 
-.form {
+.form-contact {
     margin: auto;
     width: 95%;
     position: relative;
@@ -65,13 +65,13 @@
     }
 }
 
-.form-input,
-.form-input__message {
+.form-contact__input,
+.form-contact__input__message {
     outline: none;
     border: none;
 }
 
-.form-input {
+.form-contact__input {
     width: 98%;
     padding: 10px 5px;
     margin: 5px 0;
@@ -93,7 +93,7 @@
     font-family: $cardPrice;
 }
 
-.form-input__message {
+.form-contact__input__message {
     width: 99%;
     border-radius: 5px;
     min-height: 140px;

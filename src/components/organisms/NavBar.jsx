@@ -5,9 +5,11 @@ import { BiHome } from "react-icons/bi";
 import { IoMdRestaurant } from "react-icons/io";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
+import { useHistory } from 'react-router-dom'
 
 export default function NavBar() {
   const [menu, setMenu] = useState(false);
+  const history = useHistory()
 
   return (
     <nav className="nav">
@@ -63,7 +65,7 @@ export default function NavBar() {
             </NavLink>
           </li>
         </ul>
-        <button className="nav-collapse__button">Registrarse</button>
+        <button className="nav-collapse__button" onClick={() => history.push('/register')}>Registrarse</button>
       </div>
       <div className="nav-menu" onClick={() => setMenu((m) => !m)}>
         <FiMenu />
