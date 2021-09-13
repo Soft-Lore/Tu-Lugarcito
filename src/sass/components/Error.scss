@@ -1,0 +1,73 @@
+.message-error {
+    color: $primary;
+    font-size: 0.9rem;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    text-align: center;
+    padding: 3px 10px;
+    margin: 0;
+  
+    & > span {
+      display: none;
+    }
+  }
+  
+  @keyframes errorShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .info {
+    background-image: linear-gradient(rgb(69, 114, 211), rgb(17, 71, 185));
+  }
+  
+  .error-secondary,
+  .success-message {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+    transition: display 0.5s ease-in;
+    animation: errorShow 0.2s ease-out;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 20px 0;
+    padding-left: 40px;
+    padding-right: 15px;
+    width: max-content;
+    color: white;
+    border: 0.5px solid #722c5744;
+    border-radius: 5px;
+  
+    & > span {
+      display: block;
+      cursor: pointer;
+    }
+  }
+  
+  .error-secondary {
+    background-image: linear-gradient(rgb(211, 69, 69), rgb(199, 78, 78));
+  }
+  
+  .success-message {
+    background-image: linear-gradient(rgb(42, 141, 17), rgb(55, 153, 16));
+  }
+  
+  .error-paragraph {
+    padding: 0;
+    margin: 0;
+    padding-right: 30px;
+  }
+  
+  .link-message {
+    display: block;
+    padding-top: 10px;
+    color: rgb(17, 71, 185);
+  }

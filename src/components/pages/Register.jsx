@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ControlInput } from "../moleculs/index";
 import { NavBar } from "../organisms/index";
 import { FaUserAlt } from "react-icons/fa";
@@ -8,8 +8,14 @@ import { FcGoogle } from "react-icons/fc";
 import { useHistory } from "react-router";
 import image from "../../register.svg";
 import { Footer } from "../organisms/index";
+import { useField } from "../hook/index";
+import { Error } from "../atoms/index";
+import { register } from "../../services/auth";
 
 export default function Register() {
+  const { form, handleInput } = useField();
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const history = useHistory();
   return (
     <>
@@ -28,40 +34,74 @@ export default function Register() {
       <NavBar />
       <div className="form">
         <img src={image} alt="" className="form-image" />
-        <form className="form-register" autoComplete="off" autoCorrect="off">
+        <form
+          className="form-register"
+          autoComplete="off"
+          autoCorrect="off"
+          onSubmit={(e) => register(e, form, setError, setMessage)}
+        >
           <h1 className="form-register__title">Registrarse</h1>
+          {error && (
+            <Error cls="error-secondary" setError={setError} error={error} />
+          )}
+          {message && (
+            <Error
+              cls="error-secondary success-message"
+              setError={setMessage}
+              error={message}
+              link="/login"
+            />
+          )}
           <ControlInput
             lbl="Nombre de Usuario"
             plc="Ingrese su nombre de usuario"
             cls="username"
             type="text"
+            data-name="nombre de usuario"
+            name="username"
+            onChange={(e) => handleInput(e.target, "text", 8)}
           >
             <FaUserAlt />
           </ControlInput>
+          {form.username.error && <Error error={form.username.error} />}
           <ControlInput
             lbl="Email"
             plc="Ingrese su correo eléctronico"
             cls="email"
             type="email"
+            data-name="Correo eléctronico"
+            name="email"
+            onChange={(e) => handleInput(e.target, "email")}
           >
             <MdEmail />
           </ControlInput>
+          {form.email.error && <Error error={form.email.error} />}
           <ControlInput
             lbl="Contraseña"
             plc="Ingrese su contraseña"
             cls="password"
             type="password"
+            data-name="contraseña"
+            name="password"
+            onChange={(e) => handleInput(e.target, "text", 8)}
           >
             <RiLockPasswordFill />
           </ControlInput>
+          {form.password.error && <Error error={form.password.error} />}
           <ControlInput
             lbl="Confirmar contraseña"
             plc="Ingrese nuevamente su contraseña"
             cls="password"
             type="password"
+            data-name="contraseña a confirmar"
+            name="passwordConfirmation"
+            onChange={(e) => handleInput(e.target, "text", 8)}
           >
             <RiLockPasswordFill />
           </ControlInput>
+          {form.passwordConfirmation.error && (
+            <Error error={form.passwordConfirmation.error} />
+          )}
           <button type="submit" className="form-button form-button__primary">
             Enviar
           </button>

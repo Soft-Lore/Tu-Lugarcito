@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { ControlInput } from "../moleculs/index";
 import { NavBar } from "../organisms/index";
-import { MdEmail } from "react-icons/md";
+import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useHistory } from "react-router";
 import image from "../../login.svg";
 import { Footer } from "../organisms/index";
+import { useField } from "../hook/index";
+import { Error } from "../atoms/index";
+import { login } from "../../services/auth";
 
 export default function Login() {
+  const { form, handleInput } = useField();
+  const [error, setError] = useState("");
   const history = useHistory();
   return (
     <>
@@ -26,24 +31,40 @@ export default function Login() {
       <NavBar />
       <div className="form">
         <img src={image} alt="" className="form-image" />
-        <form className="form-register" autoComplete="off" autoCorrect="off">
+        <form
+          className="form-register"
+          autoComplete="off"
+          autoCorrect="off"
+          onSubmit={(e) => login(e, form, setError)}
+        >
           <h1 className="form-register__title">Iniciar Sesión</h1>
+          {error && (
+            <Error cls="error-secondary" setError={setError} error={error} />
+          )}
           <ControlInput
-            lbl="Email"
-            plc="Ingrese su correo eléctronico"
-            cls="email"
-            type="email"
+            lbl="Nombre usuario"
+            plc="Ingrese su nombre de usuario"
+            cls="username"
+            type="text"
+            data-name="Nombre de usuario"
+            name="username"
+            onChange={(e) => handleInput(e.target, "text", 8)}
           >
-            <MdEmail />
+            <FaUserAlt />
           </ControlInput>
+          {form.username.error && <Error error={form.username.error} />}
           <ControlInput
             lbl="Contraseña"
             plc="Ingrese su contraseña"
             cls="password"
             type="password"
+            data-name="contraseña"
+            name="password"
+            onChange={(e) => handleInput(e.target, "text", 8)}
           >
             <RiLockPasswordFill />
           </ControlInput>
+          {form.password.error && <Error error={form.password.error} />}
           <button type="submit" className="form-button form-button__primary">
             Enviar
           </button>
@@ -54,7 +75,9 @@ export default function Login() {
           >
             Registrarse
           </button>
-          <a href="/" className="form-login__link">He olvidado mi contraseña</a>
+          <a href="/" className="form-login__link">
+            He olvidado mi contraseña
+          </a>
         </form>
       </div>
       <Footer />
