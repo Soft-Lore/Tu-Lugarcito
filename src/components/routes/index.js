@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import { Home, Register, Login } from '../pages/index'
+import { Home, Register, Login, Site } from '../pages/index'
 
 export default function Routes() {
     return (
@@ -11,6 +11,7 @@ export default function Routes() {
                 <Route exact path="/home" component={Home}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/register" component={Register}/>
+                <Route exact path="/site/:id" component={Site}/>
                 <Route exact component={() => <h1>Error 404</h1>}/>
             </Switch>
         </Router>

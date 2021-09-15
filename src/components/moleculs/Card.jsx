@@ -1,4 +1,7 @@
 import React from "react";
+import { IoMdBed } from 'react-icons/io'
+import { GiShower, GiHomeGarage } from 'react-icons/gi'
+import { useHistory } from "react-router";
 
 export default function Card({
   img,
@@ -9,8 +12,10 @@ export default function Card({
   garage,
   id,
 }) {
+  const history = useHistory()
+
   return (
-    <div className="card" onClick={() => alert("Chacabummmmm")}>
+    <div className="card" onClick={() => history.push(`/site/${id}`)}>
       <img src={img} alt="casa" className="card-image" />
       <div className="card-footer">
         <div className="card-footer__item">
@@ -20,27 +25,15 @@ export default function Card({
         <div className="card-footer__item card-footer__icons">
           <div className="card-footer__room" title="Cuarto/s">
             <span className="card-footer__span">{room}</span>
-            <img
-              className="card-footer__icon"
-              src="https://i.postimg.cc/mDn8gbnL/habitacion-vip.png"
-              alt="cuarto"
-            />
+            <IoMdBed />
           </div>
           <div className="card-footer__room" title="Baño/s">
             <span className="card-footer__span">{bathroom}</span>
-            <img
-              className="card-footer__icon"
-              src="https://i.postimg.cc/Jn0p8yPY/ducha.png"
-              alt="baño"
-            />
+            <GiShower />
           </div>
           <div className="card-footer__room" title="Garage">
             <span className="card-footer__span">{garage}</span>
-            <img
-              className="card-footer__icon"
-              src="https://i.postimg.cc/rstgdB6S/garage.png"
-              alt="garage"
-            />
+            <GiHomeGarage />
           </div>
         </div>
         <button className="card-footer__item card-footer__button">
