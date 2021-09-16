@@ -27,6 +27,25 @@
   }
 }
 
+.header-aboutMe {
+  background-image: url(../../house-background.jpg);
+
+  @media screen and (max-width: 900px) {
+    height: 40vh;
+    background-size: contain;
+  }
+  
+  @media screen and (max-width: 600px) {
+    background-size: contain;
+    height: 35vh;
+  }
+
+  @media screen and (max-width: 350px) {
+    background-size: 100% 40vh;
+    height: 40vh;
+  }
+}
+
 .header-content {
   position: relative;
   width: 55%;
@@ -53,15 +72,8 @@
   }
 
   @media screen and (max-width: 600px) {
-    width: 75%;
-  }
-
-  @media screen and (max-width: 550px) {
-    width: 95%;
-  }
-
-  @media screen and (max-width: 350px) {
-    width: 95%;
+    text-align: center;
+    width: 100%;
   }
 }
 
@@ -114,15 +126,26 @@
   @media screen and (max-width: 630px) {
     font-size: 0.8rem;
   }
+  @media screen and (max-width: 600px) {
+    text-align: center;
+    width: 95%;
+  }
 }
 
 .header-content__button {
   display: block;
   margin: auto;
   font-size: 1.2rem;
+  
 
+  @media screen and (max-width: 600px) {
+    font-size: .9rem;
+    padding: 7px;
+  }
+  
   @media screen and (max-width: 410px) {
-    font-size: 1rem;
+    font-size: .8rem;
+    padding: 5px;
   }
 }
 

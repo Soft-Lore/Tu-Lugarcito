@@ -24,8 +24,8 @@ body {
   background-color: $backgroundPrimary;
 }
 
-@import "./Header.scss";
 @import "./NavBar.scss";
+@import "./Header.scss";
 @import "./Home.scss";
 @import "./ContainerCards.scss";
 @import "./Card.scss";
@@ -35,3 +35,5 @@ body {
 @import "./Register.scss";
 @import "./Error.scss";
 @import "./Site.scss";
+@import "./AboutMe.scss";
+@import "./ArticleContent.scss";

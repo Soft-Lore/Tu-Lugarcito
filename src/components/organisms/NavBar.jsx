@@ -58,7 +58,7 @@ export default function NavBar() {
                   ? "nav-collapse__list-item"
                   : "nav-collapse__list-item nav-collapse__list-item__show"
               }
-              to="/about"
+              to="/about-me"
             >
               <AiOutlineUsergroupAdd />
               Acerca de
