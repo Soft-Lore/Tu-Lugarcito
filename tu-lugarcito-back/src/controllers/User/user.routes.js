@@ -2,7 +2,7 @@ const { Router } = require("express");
 const routes = Router();
 /**Controllers */
 const { new_user } = require("../User/Create.User");
-const { Login } = require("../User/Login.user");
+const { Login,google } = require("../User/Login.user");
 /**Middlewares */
 const {
   user_singup_validate,
@@ -24,6 +24,8 @@ routes.post(
   new_user
 );
 
-routes.post("/api/login",Login);
+routes.post("/api/login", Login);
+
+routes.post("/google", google);
 
 module.exports = routes;
