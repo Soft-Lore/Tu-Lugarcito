@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       activate: DataTypes.BOOLEAN,
       verified: DataTypes.BOOLEAN,
+      google:{
+        type: DataTypes.BOOLEAN,
+        defaultValue:false
+      },
       roleid: {
         type: DataTypes.INTEGER,
         allowNull: false,

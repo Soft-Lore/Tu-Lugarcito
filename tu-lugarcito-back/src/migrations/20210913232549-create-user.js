@@ -18,7 +18,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       activate: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
+      google:{
+        type: Sequelize.BOOLEAN,
+        defaultValue:false
       },
       verified: {
         type: Sequelize.BOOLEAN
