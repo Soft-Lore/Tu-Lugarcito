@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const bcryptjs = require("bcryptjs");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -37,5 +38,21 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "User",
     }
   );
+
+  User.addHook("beforeCreate", async (user, options, next) => {
+    try {
+      const salt = await bcryptjs.genSalt(10);
+      const hashed_password = await bcryptjs.hash(user.password, salt);
+      user.password = hashed_password;
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  User.prototype.toJSON = function () {
+    let value = Object.assign({}, this.get());
+    delete value.password;
+    return value;
+  };
   return User;
 };

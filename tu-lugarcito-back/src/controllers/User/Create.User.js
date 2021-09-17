@@ -5,9 +5,7 @@ exports.new_user = async (req, res) => {
   let body = req.body;
 
   try {
-    let role =
-      (await Role.findOne({ where: { role: body.role } })) ||
-      (await Role.create({ role: body.role }));
+    let role = await Role.findOne({ where: { role: body.role } });
 
     const user = await User.create({
       username: body.username,
