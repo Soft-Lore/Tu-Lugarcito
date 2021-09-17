@@ -5,7 +5,9 @@ exports.new_user = async (req, res) => {
   let body = req.body;
 
   try {
-    let role = await Role.findOne({ where: { role: body.role } });
+    const role =
+      (await Role.findOne({ where: { role: body.role } })) ||
+      (await Role.create({ role: body.role }));
 
     const user = await User.create({
       username: body.username,
@@ -14,13 +16,12 @@ exports.new_user = async (req, res) => {
       roleid: role.id,
     });
 
-    const token = generate_jwt_token(user, role);
+    const token = generate_jwt_token(user);
 
     res.status(201).json({
       ok: true,
       message: "Usuario registrado exitosamente!",
       user,
-      role,
       token,
     });
   } catch (error) {

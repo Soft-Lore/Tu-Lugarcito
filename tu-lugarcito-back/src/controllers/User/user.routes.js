@@ -2,7 +2,8 @@ const { Router } = require("express");
 const routes = Router();
 /**Controllers */
 const { new_user } = require("../User/Create.User");
-const { Login,google } = require("../User/Login.user");
+const { Login } = require("../User/Login.user");
+const { google } = require("../User/Google.user");
 /**Middlewares */
 const {
   user_singup_validate,
