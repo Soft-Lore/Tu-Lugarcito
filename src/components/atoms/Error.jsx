@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function Error({ error, cls, setError, link }) {
   return (
@@ -7,9 +6,9 @@ function Error({ error, cls, setError, link }) {
       <p className="error-paragraph">{error}</p>
       <span onClick={() => setError("")}>X</span>
       {link && (
-        <Link className="link-message" to={link}>
-          Iniciar Sesión
-        </Link>
+        <a className="link-message" href={link} target="_blank" rel="noreferrer">
+          Verificar
+        </a>
       )}
     </div>
   );

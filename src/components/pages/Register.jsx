@@ -49,7 +49,7 @@ export default function Register() {
               cls="error-secondary success-message"
               setError={setMessage}
               error={message}
-              link="/login"
+              link="https://mail.google.com/mail/"
             />
           )}
           <ControlInput

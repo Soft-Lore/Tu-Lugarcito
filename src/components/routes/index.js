@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import { Home, Register, Login, Site, AboutMe } from '../pages/index'
+import { Home, Register, Login, Site, AboutMe, Restaurants } from '../pages/index'
 
 export default function Routes() {
     return (
@@ -9,6 +9,7 @@ export default function Routes() {
             <Switch>
                 <Redirect exact from="/" to="/home" />
                 <Route exact path="/home" component={Home}/>
+                <Route exact path="/restaurants" component={Restaurants}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/about-me" component={AboutMe}/>

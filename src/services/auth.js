@@ -26,17 +26,25 @@ export const register = async (e, form, setError, setMessage) => {
         json: true,
       })
         .then((response) => response.json())
-        .then((resp) =>
-          !resp.ok
-            ? setError(resp.error || resp.message)
-            : setMessage("!Su cuenta se ha creado¡ \nfavor, inicie sesión")
-        )
+        .then((resp) => {
+          if(!resp.ok) setError(resp.error || resp.message)
+          
+          resp.token && confirmateEmail(resp.token, setMessage, setError)
+        })
         .catch((e) => console.log(e));
     }
   } else {
     setError("Favor, revise sus campos");
   }
 };
+
+const confirmateEmail = async (token, setMessage, setError) => {
+  await fetch("http://localhost:4000/api/confirm_email",  {
+    method: "PUT",
+    headers: {token: token},
+   }).then(response => response.json())
+    .then(resp => resp.ok ? setMessage(resp.message) : setError(resp.error))
+}
 
 export const login = async (e, form, setError, updateToken) => {
   e.preventDefault();

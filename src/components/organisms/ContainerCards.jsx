@@ -1,8 +1,7 @@
 import React from "react";
 import { Card } from "../moleculs/index";
-import { data } from "../../data";
 
-export default function ContainerCards() {
+export default function ContainerCards({ type, data }) {
   return (
     <main className="main-sites">
       <form className="main-sites__header">
@@ -15,19 +14,33 @@ export default function ContainerCards() {
         </select>
       </form>
       <div className="main-cards">
-        {data &&
-          data.map((dt) => (
-            <Card
-              img={dt.img}
-              price={dt.price}
-              location={dt.location}
-              room={dt.room}
-              bathroom={dt.bathroom}
-              garage={dt.garage}
-              id={dt.id}
-              key={dt.id}
-            />
-          ))}
+        {data && type === "restaurant"
+          ? data.map((dt) => (
+              <Card
+                img={dt.img}
+                price={dt.location}
+                location={dt.name}
+                room={dt.foots}
+                bathroom={dt.drinks}
+                garage={dt.rapid}
+                id={dt.id}
+                key={dt.id}
+                type={type}
+              />
+            ))
+          : data.map((dt) => (
+              <Card
+                img={dt.img}
+                price={dt.price}
+                location={dt.location}
+                room={dt.room}
+                bathroom={dt.bathroom}
+                garage={dt.garage}
+                id={dt.id}
+                key={dt.id}
+                type={type}
+              />
+            ))}
       </div>
     </main>
   );
