@@ -4,13 +4,13 @@ import { NavBar } from "../organisms/index";
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { FcGoogle } from "react-icons/fc";
 import { useHistory } from "react-router";
 import image from "../../register.svg";
 import { Footer } from "../organisms/index";
 import { useField } from "../hook/index";
 import { Error } from "../atoms/index";
-import { register } from "../../services/auth";
+import { register, googleSignIn } from "../../services/auth";
+import GoogleLogin from 'react-google-login';
 
 export default function Register() {
   const { form, handleInput } = useField();
@@ -113,9 +113,13 @@ export default function Register() {
             Iniciar sesión
           </button>
           <span className="form-span">O registrate con</span>
-          <div className="form-google__icon">
-            <FcGoogle />
-          </div>
+          <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              buttonText="Google"
+              onSuccess={googleSignIn}
+              onFailure={googleSignIn}
+              cookiePolicy={'single_host_origin'}
+          />
         </form>
       </div>
       <Footer />

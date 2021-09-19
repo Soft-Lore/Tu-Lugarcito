@@ -66,7 +66,7 @@ exports.google = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       ok: false,
-      err,
+      error,
     });
   }
 };

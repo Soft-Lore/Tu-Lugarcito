@@ -65,3 +65,18 @@ export const login = async (e, form, setError, updateToken) => {
     return "Favor, revise sus campos";
   }
 };
+
+export const googleSignIn = async (googleData, setError, setMessage) => {
+  const id_token = googleData.tokenObj.id_token
+  const data = new URLSearchParams();
+  data.append("idtoken", id_token)
+
+  await fetch("http://localhost:4000/google", {
+        method: "POST",
+        body: data,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        json: true,
+      })
+}

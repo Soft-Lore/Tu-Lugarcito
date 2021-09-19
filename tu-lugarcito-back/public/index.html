@@ -30,7 +30,11 @@
         var profile = googleUser.getBasicProfile();
         var id_token = googleUser.getAuthResponse().id_token;
 
-        var xhr = new XMLHttpRequest();
+        console.log(googleUser.getBasicProfile())
+        console.log("-----------------")
+        console.log(googleUser.getAuthResponse())
+
+        /* var xhr = new XMLHttpRequest();
 
         xhr.open("POST", "/google");
         xhr.setRequestHeader(
@@ -40,7 +44,7 @@
         xhr.onload = function () {
           console.log("Signed in as: " + xhr.responseText);
         };
-        xhr.send("idtoken=" + id_token);
+        xhr.send("idtoken=" + id_token); */
       }
     </script>
   </body>
