@@ -169,3 +169,49 @@
     cursor: pointer;
   }
 }
+
+.nav-container__user {
+  @media screen and (max-width: 750px) {
+    width: 100%;
+  }
+}
+
+.nav-usericon {
+  display: block;
+  width: 30px;
+  cursor: pointer;
+  margin: auto;
+}
+
+.nav-user__options{
+  display: none;
+}
+
+.nav-user__options-show{
+  display: block;
+  transition: .3s ease-in;
+}
+
+.nav-user__options,
+.nav-user__options-show {
+  position: absolute;
+  text-align: center;
+  padding: 8px 15px;
+  
+  @media screen and (min-width: 750px) {
+    width: max-content;
+    background-color: $primaryHover;
+    text-align: right;
+    top: 50px;
+    right: 0;
+  }
+}
+
+.user-options__list {
+  margin: 8px 0;
+  font-family: $item;
+  
+  & a {
+    color: #f3f3f3;
+  }
+}
