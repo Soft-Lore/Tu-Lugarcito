@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 let verify_token = (req, res, next) => {
-  let token = req.get("token");
+  let token = req.headers["token"];
 
   if (!token) {
     return res.status(401).json({
@@ -23,4 +23,8 @@ let verify_token = (req, res, next) => {
     req.user = decode.user;
     next();
   });
+};
+
+module.exports = {
+  verify_token,
 };
