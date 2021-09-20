@@ -1,9 +1,9 @@
 const { User } = require("../../database/db");
 const jwt = require("jsonwebtoken");
-const { get_template, send_email } = require("../../services/verify.email");
 
 exports.confirm_email = async (req, res) => {
-  let token = req.user;
+  let token = req.params.token;
+  let user_data;
 
   if (!token) {
     return res.status(401).json({
@@ -12,35 +12,41 @@ exports.confirm_email = async (req, res) => {
     });
   }
 
-  try {
-    User.findOne({ where: { email: token.email } }).then((user) => {
-      if (!user) {
-        return res.status(404).json({
+  jwt.verify(token, "secreta", (err, decode) => {
+    if (err) {
+      return res.status(401).json({
+        ok: false,
+        err: {
+          message: "Token no valido",
+        },
+      });
+    }
+
+    user_data = decode.user;
+  });
+
+  const user = await User.findOne({ where: { email: user_data.email } });
+
+  if (!user) {
+    res.json({
+      ok: false,
+      message: "No se encontro un usuario con este email",
+    });
+  }
+
+  User.update({ verified: true }, { where: { id: user.id } }).then(
+    (user_update) => {
+      if (!user_update) {
+        res.json({
           ok: false,
-          message: "Lo sentimos este usuario no existe",
+          message: "No se encontro un usuario con este id",
         });
       }
 
-      user
-        .update({ verified: true }, { where: { id: user.id } })
-        .then((user_verificate) => {
-          const token = jwt.sign({ user }, "secreta", { expiresIn: "1m" });
-
-          const template = get_template(user.username, token);
-
-          send_email(user.email, "Confirmacion de Email", template);
-        });
-
-      res.status(200).json({
+      res.cookie("token", token).status(201).json({
         ok: true,
-        message: "Por favor verifique su correo",
+        message: "Confirmacion exitosamente!",
       });
-    });
-  } catch (error) {
-    return res.status(500).json({
-      ok: true,
-      message: "Sucedio un error al crear este usuario!",
-      error,
-    });
-  }
+    }
+  );
 };

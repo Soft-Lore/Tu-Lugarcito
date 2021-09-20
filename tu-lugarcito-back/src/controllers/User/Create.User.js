@@ -1,5 +1,7 @@
 const { Role, User } = require("../../database/db");
 const { generate_jwt_token } = require("../../services/generate.JWT");
+const { get_template, send_email } = require("../../services/verify.email");
+const jwt = require("jsonwebtoken");
 
 exports.new_user = async (req, res) => {
   let body = req.body;
@@ -16,13 +18,15 @@ exports.new_user = async (req, res) => {
       roleid: role.id,
     });
 
-    const token = generate_jwt_token(user);
+    const token = jwt.sign({ user }, "secreta", { expiresIn: "5m" });
+    const template = get_template(user.username, token);
+    send_email(user.email, "Confirmacion de Email", template);
 
     res.status(201).json({
       ok: true,
-      message: "Usuario registrado exitosamente!",
+      message:
+        "Usuario registrado exitosamente! Por favor verifique su correo ❤",
       user,
-      token,
     });
   } catch (error) {
     res.status(500).json({

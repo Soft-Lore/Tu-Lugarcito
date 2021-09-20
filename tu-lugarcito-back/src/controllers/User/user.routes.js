@@ -5,6 +5,7 @@ const { new_user } = require("../User/Create.User");
 const { Login } = require("../User/Login.user");
 const { google } = require("../User/Google.user");
 const { confirm_email } = require("../User/confirm.email");
+
 /**Middlewares */
 const {
   user_singup_validate,
@@ -32,6 +33,6 @@ routes.post("/api/login", Login);
 
 routes.post("/google", google);
 
-routes.put("/api/confirm_email", verify_token, confirm_email);
+routes.put("/api/confirm_email/:token", verify_token, confirm_email);
 
 module.exports = routes;
