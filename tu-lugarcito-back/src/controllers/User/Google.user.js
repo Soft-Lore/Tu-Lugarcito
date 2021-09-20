@@ -44,8 +44,8 @@ exports.google = async (req, res) => {
         });
       } else {
         let token = generate_jwt_token(user);
-        console.log(token);
-        return res.json({
+
+        return res.cookie("token", token).json({
           ok: true,
           usuario: user,
           token,
@@ -61,6 +61,11 @@ exports.google = async (req, res) => {
         verified: true,
         google: true,
         roleid: role.id,
+      });
+
+      res.cookie("token", token).status(201).json({
+        ok: true,
+        message: "Registro Excitoso!",
       });
     }
   } catch (error) {
