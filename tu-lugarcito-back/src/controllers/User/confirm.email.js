@@ -42,11 +42,11 @@ exports.confirm_email = async (req, res) => {
           message: "No se encontro un usuario con este id",
         });
       }
-
       res.cookie("token", token).status(201).json({
         ok: true,
         message: "Confirmacion exitosamente!",
       });
+      return res.redirect("http://localhost:3000/Login/Confirmate");
     }
   );
 };

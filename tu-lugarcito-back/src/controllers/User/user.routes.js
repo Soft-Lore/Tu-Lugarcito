@@ -33,6 +33,6 @@ routes.post("/api/login", Login);
 
 routes.post("/google", google);
 
-routes.put("/api/confirm_email/:token", verify_token, confirm_email);
+routes.get("/api/confirm_email/:token", confirm_email);
 
 module.exports = routes;
