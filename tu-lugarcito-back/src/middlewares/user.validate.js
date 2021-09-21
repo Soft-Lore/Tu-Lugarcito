@@ -18,6 +18,10 @@ const user_singup_validate = () => {
       .withMessage("la contraseña es requerida")
       .isLength({ min: 8 })
       .withMessage("La contraseña debe tener almenos 8 caracteres")
+      .matches(/^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]{6,16}$/)
+      .withMessage(
+        "la contraseña debe contener al menos un número y un carácter especial"
+      )
       .custom((value) => {
         let palabras = [
           "12345678",
@@ -32,15 +36,11 @@ const user_singup_validate = () => {
 
         palabras.forEach((element) => {
           if (value === element) {
-            throw new Error("Utilize una contraseña mas segura");
+            throw new Error("La contraseña debe ser mas segura");
           }
         });
         return true;
-      })
-      .matches(/^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]{6,16}$/)
-      .withMessage(
-        "la contraseña debe contener al menos un número y un carácter especial"
-      ),
+      }),
     body("passwordConfirmation")
       .notEmpty()
       .withMessage("La confirmacion de contraseña es requerida")
@@ -116,5 +116,5 @@ module.exports = {
   username_validate,
   email_validate,
   message_Validate,
-  check_roles_existed
+  check_roles_existed,
 };
