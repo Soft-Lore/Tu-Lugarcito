@@ -67,11 +67,6 @@
     margin: 10px 0;
 }
 
-.form-google__icon {
-    font-size: 2.3rem;
-    cursor: pointer;
-}
-
 @keyframes imgFormAnimation {
     0% {
         transform: translateX(-100%);
@@ -121,4 +116,31 @@
     margin-top: 10px;
     color: $primary;
     font-family: "Poppins", sans-serif;
+}
+
+.google-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 2rem;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 10px;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.54);
+    box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px,
+        rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+}
+
+.google-btn:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.google-btn__title {
+    margin-left: 10px;
+    font-size: 1rem;
 }

@@ -74,7 +74,7 @@ export const login = async (e, form, setError, updateToken) => {
   }
 };
 
-export const googleSignIn = async (googleData, setError, setMessage) => {
+export const googleSignIn = async (googleData) => {
   const id_token = googleData.tokenObj.id_token
   const data = new URLSearchParams();
   data.append("idtoken", id_token)

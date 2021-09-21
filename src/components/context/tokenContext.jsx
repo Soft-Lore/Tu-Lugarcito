@@ -8,7 +8,7 @@ const context = React.createContext();
 //Gestion e inyeccion del token de usuario a la app
 export function TokenProvider({ children }) {
   const getToken = cookies.get("isAuth");
-  const [token, setToken] = useState(getToken || "fdasfdsfs");
+  const [token, setToken] = useState(getToken || "");
   
   return (
     <context.Provider value={{ token, setToken }}>

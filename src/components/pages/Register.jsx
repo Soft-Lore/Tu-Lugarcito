@@ -11,6 +11,7 @@ import { useField } from "../hook/index";
 import { Error } from "../atoms/index";
 import { register, googleSignIn } from "../../services/auth";
 import GoogleLogin from 'react-google-login';
+import { FcGoogle } from 'react-icons/fc'
 
 export default function Register() {
   const { form, handleInput } = useField();
@@ -112,9 +113,15 @@ export default function Register() {
           >
             Iniciar sesión
           </button>
-          <span className="form-span">O registrate con</span>
+          <span className="form-span">O</span>
           <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              render={renderProps => (
+                <button className="google-btn" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                  <FcGoogle/>
+                  <span className="google-btn__title">Resgistrate con Google</span>
+                </button>
+              )}
               buttonText="Google"
               onSuccess={googleSignIn}
               onFailure={googleSignIn}

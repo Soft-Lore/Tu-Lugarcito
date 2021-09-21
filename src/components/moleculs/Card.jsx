@@ -18,7 +18,8 @@ export default function Card({
   const history = useHistory()
 
   return (
-    <div className="card" onClick={() => history.push(`/site/${id}`)}>
+    <div className="card" onClick={type !== 'restaurant' ? () => history.push(`/site/${id}`) 
+    : () => history.push(`/restaurantSite/${id}`)}>
       <img src={img} alt="casa" className="card-image" />
       <div className="card-footer">
         <div className="card-footer__item">
