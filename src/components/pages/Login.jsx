@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ControlInput } from "../moleculs/index";
 import { NavBar } from "../organisms/index";
 import { FaUserAlt } from "react-icons/fa";
@@ -9,10 +9,12 @@ import { Footer } from "../organisms/index";
 import { useField } from "../hook/index";
 import { Error } from "../atoms/index";
 import { login } from "../../services/auth";
+import context from '../context/tokenContext'
 
 export default function Login() {
   const { form, handleInput } = useField();
   const [error, setError] = useState("");
+  const { getIsToken } = useContext(context)
   const history = useHistory();
   return (
     <>
@@ -35,7 +37,7 @@ export default function Login() {
           className="form-register"
           autoComplete="off"
           autoCorrect="off"
-          onSubmit={(e) => login(e, form, setError)}
+          onSubmit={(e) => login(e, form, setError, getIsToken)}
         >
           <h1 className="form-register__title">Iniciar Sesión</h1>
           {error && (
@@ -48,7 +50,7 @@ export default function Login() {
             type="text"
             data-name="Nombre de usuario"
             name="username"
-            onChange={(e) => handleInput(e.target, "text", 8)}
+            onChange={(e) => handleInput(e.target, "text", 3)}
           >
             <FaUserAlt />
           </ControlInput>

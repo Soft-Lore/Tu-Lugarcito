@@ -1,3 +1,7 @@
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
 export const register = async (e, form, setError, setMessage) => {
   e.preventDefault();
 
@@ -9,6 +13,8 @@ export const register = async (e, form, setError, setMessage) => {
   ) {
     if (form.password.value !== form.passwordConfirmation.value) {
       setError("Las contraseñas no coinciden");
+
+      setError("");
     } else {
       const data = new URLSearchParams();
       data.append("username", form.username.value);
@@ -27,26 +33,32 @@ export const register = async (e, form, setError, setMessage) => {
       })
         .then((response) => response.json())
         .then((resp) => {
-          if(!resp.ok) setError(resp.error || resp.message)
-          
-          resp.token && confirmateEmail(resp.token, setMessage, setError)
+          if(!resp.ok){
+            setError(resp.error || resp.message)
+
+            setTimeout(() => {
+              setError("")
+            }, 4000);
+          } else {
+            setMessage(resp.message)
+  
+            setTimeout(() => {
+              setMessage("")
+            }, 4000);
+          }
         })
         .catch((e) => console.log(e));
     }
   } else {
     setError("Favor, revise sus campos");
+
+    setTimeout(() => {
+      setError("")
+    }, 4000);
   }
 };
 
-const confirmateEmail = async (token, setMessage, setError) => {
-  await fetch("http://localhost:4000/api/confirm_email",  {
-    method: "PUT",
-    headers: {token: token},
-   }).then(response => response.json())
-    .then(resp => resp.ok ? setMessage(resp.message) : setError(resp.error))
-}
-
-export const login = async (e, form, setError, updateToken) => {
+export const login = async (e, form, setError, getIsToken) => {
   e.preventDefault();
 
   if ((form.email.error && form.password.error) === "") {
@@ -63,18 +75,31 @@ export const login = async (e, form, setError, updateToken) => {
     })
       .then((response) => response.json())
       .then((resp) => {
-        if (!resp.ok) setError(resp?.message || resp.err?.message);
-        else console.log("inicio bien");
+        if (!resp.ok) {
+          setError(resp?.message || resp.err?.message);
+
+          setTimeout(() => {
+            setError("")
+          }, 4000);
+        }
+        else {
+          cookies.set("token", resp.token)
+          getIsToken()
+        }
       })
       .catch((e) => {
         return e;
       });
   } else {
-    return "Favor, revise sus campos";
+    setError("Favor, revise sus campos");
+
+     setTimeout(() => {
+      setError("")
+    }, 4000);
   }
 };
 
-export const googleSignIn = async (googleData) => {
+export const googleSignIn = async (googleData, history, setError) => {
   const id_token = googleData.tokenObj.id_token
   const data = new URLSearchParams();
   data.append("idtoken", id_token)
@@ -86,5 +111,7 @@ export const googleSignIn = async (googleData) => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         json: true,
-      })
+      }).then(response => response.json())
+      .then(resp => resp.ok ? history.push('/login') : setError("Ha ocurrido un error"))
+      .catch(e => console.log(e))
 }

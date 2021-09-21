@@ -60,7 +60,7 @@ export default function Register() {
             type="text"
             data-name="nombre de usuario"
             name="username"
-            onChange={(e) => handleInput(e.target, "text", 8)}
+            onChange={(e) => handleInput(e.target, "text", 3)}
           >
             <FaUserAlt />
           </ControlInput>
