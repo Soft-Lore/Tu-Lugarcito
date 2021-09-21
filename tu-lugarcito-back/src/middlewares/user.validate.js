@@ -9,9 +9,10 @@ const user_singup_validate = () => {
       .not(),
     body("email")
       .notEmpty()
-      .withMessage("El email es requerido")
       .isEmail()
-      .withMessage("El email no valido"),
+      .normalizeEmail()
+      .withMessage("El email no valido")
+      .withMessage("El email es requerido"),
     body("password")
       .not()
       .notEmpty()
@@ -20,7 +21,7 @@ const user_singup_validate = () => {
       .withMessage("La contraseña debe tener almenos 8 caracteres")
       .matches(/^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]{6,16}$/)
       .withMessage(
-        "la contraseña debe contener al menos un número y un carácter especial"
+        "Su contraseña es muy vulnerable"
       )
       .custom((value) => {
         let palabras = [
@@ -59,7 +60,7 @@ const username_validate = (req, res, next) => {
   User.findOne({ where: { username: req.body.username } }).then((user) => {
     if (user) {
       res.status(400).json({
-        ok: true,
+        ok: false,
         message: "Lo sentimos este nombre de usuario ya esta en uso",
       });
       return;
@@ -72,7 +73,7 @@ const email_validate = (req, res, next) => {
   User.findOne({ where: { email: req.body.email } }).then((user) => {
     if (user) {
       res.status(400).json({
-        ok: true,
+        ok: false,
         message: "Lo sentimos este email ya esta en uso",
       });
       return;
