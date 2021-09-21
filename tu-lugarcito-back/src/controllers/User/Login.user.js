@@ -3,7 +3,7 @@ const bcryptjs = require("bcryptjs");
 const { generate_jwt_token } = require("../../services/generate.JWT");
 
 exports.Login = async (req, res) => {
-  const { username, password, role } = req.body;
+  const { username, password } = req.body;
 
   if (!(username && password)) {
     return res.status(400).json({

@@ -42,10 +42,7 @@ exports.confirm_email = async (req, res) => {
           message: "No se encontro un usuario con este id",
         });
       }
-      return res
-        .cookie("token", token)
-        .status(201)
-        .redirect("http://localhost:3000/login");
+      return res.status(201).redirect("http://localhost:3000/login");
     }
   );
 };
