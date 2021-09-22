@@ -6,8 +6,8 @@ export default function ContainerCards({ type, data }) {
     <main className="main-sites">
       <form className="main-sites__header">
         <label className="sites-header__lbl">Resultados: 12/12</label>
-        <select className="sites-header__select">
-          <option>Filtrar Busqueda</option>
+        <select defaultValue="none" className="sites-header__select">
+          <option value="none" disabled>Filtrar Busqueda</option>
           <option value="new">Lo mas nuevo</option>
           <option value="low">Lo de menor costo</option>
           <option value="high">Lo de mayor costo</option>

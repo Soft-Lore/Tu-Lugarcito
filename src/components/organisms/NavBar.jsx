@@ -35,7 +35,7 @@ export default function NavBar() {
                   ? "nav-collapse__list-item"
                   : "nav-collapse__list-item nav-collapse__list-item__show"
               }
-              to="/home"
+              to="/inmuebles"
             >
               <BiHome />
               Inmuebles
@@ -92,7 +92,10 @@ export default function NavBar() {
               </ul>
             </div>
             ) : (
+              <>
+              <button className="nav-collapse__button" onClick={() => history.push('/login')}>Iniciar</button>
               <button className="nav-collapse__button" onClick={() => history.push('/register')}>Registrarse</button>
+              </>
           )
         }
       </div>

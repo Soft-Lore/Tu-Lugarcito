@@ -22,6 +22,17 @@ ul {
 
 body {
   background-color: $backgroundPrimary;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar { 
+    width: 5px;
+    background-color: $primary;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 50px;
+  }
 }
 
 @import "./NavBar.scss";

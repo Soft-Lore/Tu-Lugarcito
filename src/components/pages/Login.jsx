@@ -8,8 +8,10 @@ import image from "../../login.svg";
 import { Footer } from "../organisms/index";
 import { useField } from "../hook/index";
 import { Error } from "../atoms/index";
-import { login } from "../../services/auth";
+import { login, googleSignIn } from "../../services/auth";
 import context from '../context/tokenContext'
+import GoogleLogin from 'react-google-login';
+import { FcGoogle } from 'react-icons/fc'
 
 export default function Login() {
   const { form, handleInput } = useField();
@@ -37,7 +39,7 @@ export default function Login() {
           className="form-register"
           autoComplete="off"
           autoCorrect="off"
-          onSubmit={(e) => login(e, form, setError, getIsToken)}
+          onSubmit={(e) => login(e, form, setError, getIsToken, history)}
         >
           <h1 className="form-register__title">Iniciar Sesión</h1>
           {error && (
@@ -80,6 +82,20 @@ export default function Login() {
           <a href="/" className="form-login__link">
             He olvidado mi contraseña
           </a>
+          <span className="form-span">O</span>
+          <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              render={renderProps => (
+                <button className="google-btn" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                  <FcGoogle/>
+                  <span className="google-btn__title">Resgistrate con Google</span>
+                </button>
+              )}
+              buttonText="Google"
+              onSuccess={googleSignIn}
+              onFailure={googleSignIn}
+              cookiePolicy={'single_host_origin'}
+          />
         </form>
       </div>
       <Footer />

@@ -58,7 +58,7 @@ export const register = async (e, form, setError, setMessage) => {
   }
 };
 
-export const login = async (e, form, setError, getIsToken) => {
+export const login = async (e, form, setError, getIsToken, history) => {
   e.preventDefault();
 
   if ((form.email.error && form.password.error) === "") {
@@ -85,6 +85,7 @@ export const login = async (e, form, setError, getIsToken) => {
         else {
           cookies.set("token", resp.token)
           getIsToken()
+          history.push('/')
         }
       })
       .catch((e) => {
