@@ -36,7 +36,7 @@ export const data = [
         "id":"4"
     },
     {
-        "img":"https://canal2tv.com/wp-content/uploads/2021/02/WhatsApp-Image-2021-02-25-at-6.29.10-PM-1040x675.jpeg",
+        "img":"https://allrest-space.fra1.digitaloceanspaces.com/adverts/restaurant/chefellas/chefellas.jpg",
         "name":"Chefellas",
         "location":"Matagalpa",
         "foots":"3",

@@ -8,6 +8,7 @@ import {
 } from "../organisms/index";
 import { data } from "../../dataRestaurants";
 import { useLoading } from "../hook/index";
+import { Spinner } from '../atoms/index'
 
 export default function Home() {
   const { loading } = useLoading();
@@ -28,7 +29,7 @@ export default function Home() {
           <Footer />
         </>
       ) : (
-        <h1>Cargando</h1>
+        <Spinner />
       )}
     </div>
   );

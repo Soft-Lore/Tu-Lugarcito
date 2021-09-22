@@ -2,7 +2,8 @@ import React from 'react'
 import { Header, ContainerCards, NavBar, FormContact, Footer } from '../organisms/index'
 import { data } from "../../data";
 import { useLoading } from '../hook/index'
-
+import { Spinner } from '../atoms/index'
+ 
 export default function Home() {
     const { loading } = useLoading()
 
@@ -17,7 +18,7 @@ export default function Home() {
                 <FormContact />
                 <Footer />
                 </>
-             ) : <h1>Cargando</h1>
+             ) : <Spinner />
          }
         </div>
     )

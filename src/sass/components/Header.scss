@@ -1,6 +1,6 @@
 .header {
   height: calc(100vh - 50px);
-  background-image: url(../../house-background3.jpg);
+  background-image: url(../../images/background-inmuebles.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -28,7 +28,7 @@
 }
 
 .header-aboutMe {
-  background-image: url(../../house-background.jpg);
+  background-image: url(../../images/background-about-me.jpg);
 
   @media screen and (max-width: 900px) {
     height: 40vh;
@@ -47,7 +47,7 @@
 }
 
 .header-restaurants {
-  background-image: url(../../background-restaurant.jpg);
+  background-image: url(../../images/background-restaurant.jpg);
 }
 
 .header-content {

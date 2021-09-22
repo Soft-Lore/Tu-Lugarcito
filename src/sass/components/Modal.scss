@@ -1,0 +1,77 @@
+.modal {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    border: none;
+    outline: none;
+    left: 25%;
+    top: 25%;
+    border-radius: 25px;
+}
+
+.title-modal {
+    padding: 0 10px;
+    text-align: center;
+    color: #222;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.btn-modal {
+    margin: 15px 5px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-family: $item, sans-serif;
+    border: 1px solid #919191;
+    font-size: 1rem;
+    box-shadow: 1px 1px 2px black;
+    outline: none;
+    border-radius: 15px;
+}
+
+.text-note {
+    font-size: .9rem;
+    color: #222;
+}
+
+.acepted {
+    background-color: $primary;
+    border: 1px solid #666;
+    color: #fff;
+}
+
+.cancel {
+    color: $primary;
+    border: 1px solid $primary;
+}
+
+.acepted:hover {
+    background-color: $primaryHover;
+}
+
+.cancel:hover {
+    background-color: #fff;
+}
+
+@media screen and (max-width: 1000px){
+    .title-modal {
+        font-size: 1.3rem;
+    }
+
+    .modal {
+        width: 75%;
+        left: 12.5%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .modal {
+        width: 85%;
+        left: 7.5%;
+    }
+    .title-modal {
+        font-size: 1rem;
+    }
+}

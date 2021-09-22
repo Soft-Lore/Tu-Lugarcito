@@ -66,6 +66,7 @@ exports.google = async (req, res) => {
       res.cookie("token", token).status(201).json({
         ok: true,
         message: "Registro Excitoso!",
+        token
       });
     }
   } catch (error) {

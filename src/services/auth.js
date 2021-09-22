@@ -58,7 +58,7 @@ export const register = async (e, form, setError, setMessage) => {
   }
 };
 
-export const login = async (e, form, setError, getIsToken, history) => {
+export const login = async (e, form, setError, getIsToken) => {
   e.preventDefault();
 
   if ((form.email.error && form.password.error) === "") {
@@ -85,7 +85,7 @@ export const login = async (e, form, setError, getIsToken, history) => {
         else {
           cookies.set("token", resp.token)
           getIsToken()
-          history.push('/')
+          window.location.replace("/");
         }
       })
       .catch((e) => {
@@ -113,6 +113,18 @@ export const googleSignIn = async (googleData, history, setError) => {
         },
         json: true,
       }).then(response => response.json())
-      .then(resp => resp.ok ? history.push('/login') : setError("Ha ocurrido un error"))
+      .then(resp => {
+        if(resp.ok){
+          cookies.set("token", resp.token)
+          window.location.replace("/");
+        }else {
+          return "Ha ocurrrido un error al registrarse"
+        }
+      })
       .catch(e => console.log(e))
+}
+
+export const logOut = async () => {
+  cookies.remove("token")
+  window.location.replace("/");
 }

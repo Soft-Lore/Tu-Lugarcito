@@ -5,7 +5,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useHistory } from "react-router";
-import image from "../../register.svg";
+import image from "../../images/register.svg";
 import { Footer } from "../organisms/index";
 import { useField } from "../hook/index";
 import { Error } from "../atoms/index";

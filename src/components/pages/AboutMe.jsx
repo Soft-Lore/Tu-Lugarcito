@@ -1,8 +1,9 @@
 import React from "react";
 import { NavBar, Header, Footer } from "../organisms/index";
 import { ArticleContent } from "../moleculs/index";
-import logo from "../../logo1.png";
+import logo from "../../images/logo.png";
 import { useLoading } from "../hook/index";
+import { Spinner } from '../atoms/index'
 
 export default function AboutMe() {
   const { loading } = useLoading();
@@ -70,7 +71,7 @@ export default function AboutMe() {
           <Footer />
         </>
       ) : (
-        <h1>Cargando....</h1>
+        <Spinner />
       )}
     </>
   );

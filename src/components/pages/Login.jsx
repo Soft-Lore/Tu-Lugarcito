@@ -4,7 +4,7 @@ import { NavBar } from "../organisms/index";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useHistory } from "react-router";
-import image from "../../login.svg";
+import image from "../../images/login.svg";
 import { Footer } from "../organisms/index";
 import { useField } from "../hook/index";
 import { Error } from "../atoms/index";
