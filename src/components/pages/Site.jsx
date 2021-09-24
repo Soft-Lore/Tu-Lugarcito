@@ -1,9 +1,8 @@
 import React from "react";
-import { useCarrousel } from "../hook/index";
 import { NavBar } from "../organisms/index";
-import { ImNext, ImBackward } from "react-icons/im";
 import { useLoading } from "../hook/index";
 import { Spinner } from "../atoms/index";
+import { Carrousel } from "../moleculs";
 
 const images = [
   "https://picsum.photos/1200/700?grayscale",
@@ -13,9 +12,6 @@ const images = [
 ];
 
 export default function Site() {
-  const { index, toggleBack, toggleNext, updateIndex } = useCarrousel(
-    images.length
-  );
   const { loading } = useLoading();
 
   return (
@@ -24,44 +20,7 @@ export default function Site() {
         <>
           <NavBar />
           <main className="site">
-            <div className="site-section site-container__slider">
-              <div className="slider-items__span">
-                {images &&
-                  images.map((img, i) => (
-                    <button
-                      onClick={(e) => updateIndex(i)}
-                      key={i}
-                      className={
-                        i === index
-                          ? "slider-span__circle slider-span__active"
-                          : "slider-span__circle"
-                      }
-                    ></button>
-                  ))}
-              </div>
-              <ImBackward
-                className="site-section__next site-section__btn"
-                onClick={() => toggleNext()}
-              />
-              <div
-                className="site-slider"
-                style={{ transform: `translateX(${-index * 100}%)` }}
-              >
-                {images &&
-                  images.map((img, index) => (
-                    <img
-                      key={index}
-                      className="site-slider__item"
-                      src={img}
-                      alt=""
-                    />
-                  ))}
-              </div>
-              <ImNext
-                className="site-section__back site-section__btn"
-                onClick={() => toggleBack()}
-              />
-            </div>
+            <Carrousel images={images}/>
             <div className="site-section site-section__two">
               <h3 className="site-section__title">VENTA</h3>
               <p className="site-section__price">$15000</p>
