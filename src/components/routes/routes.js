@@ -6,6 +6,7 @@ import {
   AboutMe,
   Restaurants,
   RestaurantSite,
+  SiteProfile
 } from "../pages/index";
 
 export const routes = {
@@ -29,6 +30,10 @@ export const routes = {
     {
       path: "/restaurantSite/:id",
       component: RestaurantSite,
+    },
+    {
+      path: "/profile/site/:id",
+      component: SiteProfile
     },
     {
       path: "",

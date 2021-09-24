@@ -96,7 +96,7 @@ export default function NavBar() {
                   <NavLink to="#">Perfil</NavLink>
                 </li>
                 <li className="user-options__list">
-                  <NavLink to="#">Mis Sitios</NavLink>
+                  <NavLink to="/profile/site/fsdf">Mis Sitios</NavLink>
                 </li>
                 <li className="user-options__list">
                   <button onClick={toggleActive}>Cerrar Sesion</button>

@@ -1,0 +1,114 @@
+.siteProfile {
+    display: flex;
+}
+
+.tabs {
+    background-color: #f2f2f2;
+}
+
+.tabs-hidden {
+    display: none;
+}
+
+.tabs-list {
+    display: flex;
+    justify-content: space-around;
+
+    & .tabs-list__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 0;
+        font-family: $item;
+        cursor: pointer;
+        width: 50%;
+        text-align: center;
+        transition: .1s ease-in;
+    }
+}
+
+.tabs-list__item-active {
+    background-color: $primaryHover;
+    color: white;
+}
+
+.new-site__file {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.new-site {
+    margin: auto;
+    width: 50%;
+    padding: 20px 0;
+
+    &::-webkit-scrollbar { 
+        width: 5px;
+        background-color: $primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: white;
+        border-radius: 50px;
+    }
+
+    @media screen and (max-width: 1000px) {
+     width: 60%;
+    }
+    @media screen and (max-width: 800px) {
+     width: 70%;
+    }
+    @media screen and (max-width: 650px) {
+       width: 80%;
+    }
+    @media screen and (max-width: 600px) {
+       width: 90%;
+    }
+    @media screen and (max-width: 550px) {
+       width: 100%;
+    }
+}
+
+.new-site__title {
+    font-family: "Poppins", sans-serif;
+    border-bottom: .3px solid #999;
+    text-align: center;
+    color: $primary;
+    width: 95%;
+    margin: auto;
+}
+
+.new-site__drapAndDrop {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+    border: 1px solid #999;
+    cursor: pointer;
+    color: #999;
+    transition: color .2s ease;
+
+    &:hover {
+        color: $primaryHover;
+    }
+}
+
+.new-site__control,
+.new-site__drapAndDrop {
+    width: 95%;
+    margin: auto;
+    margin: 10px auto;
+}
+
+
+.new-site__send {
+    width: 95%;
+    margin: auto;
+}
