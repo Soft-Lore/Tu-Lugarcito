@@ -2,7 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100%;
+  
 }
 
 .tabs-container {
@@ -13,6 +15,10 @@
   width: 80%;
   padding: 10px 12px;
   border-bottom: solid 1px rgba(0, 0, 0, .56);
+
+  @media screen and (max-width: 500px) {
+    padding: 5px 7px;
+  }
 }
 
 .tab-menu {
@@ -21,20 +27,29 @@
   flex-direction: column;
   padding: 10px 12px;
   width: 20%;
+
+  @media screen and (max-width: 500px) {
+    padding: 5px;
+  }
 }
 
 .icon {
   cursor: pointer;
   font-size: 2rem;
   font-family: "Poppins", sans-serif;
-}
+  transition: .2s ease-in;
 
-.icon:hover {
-  transform: scale(1.2);
-}
+  @media screen and (max-width: 500px) {
+    font-size: 1.2rem;
+  }
 
-.icon:active {
-  transform: scale(1);
+  &:hover {
+    transform: scale(1.2);
+  } 
+  &:active {
+    transition: .10s ease-out;
+    transform: scale(1);
+  }
 }
 
 .tab-menu__active {
@@ -44,4 +59,73 @@
 .tab-title {
   font-size: .8rem;
   font-family: "Poppins", sans-serif;
+
+  @media screen and (max-width: 500px) {
+    font-size: .6rem;
+  }
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(5, 0.6fr);
+  padding: 20px 12px;
+  place-content: center;
+  gap: 30px;
+
+  @media screen and (max-width: 1700px) {
+    grid-template-columns: repeat(4, 0.6fr);
+  }
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(3, 0.6fr);
+  }
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: repeat(2, 0.6fr);
+  }
+  @media screen and (max-width: 750px) {
+    grid-template-columns: 0.8fr;
+  }
+}
+
+.card__menu {
+  transition: .2s ease-in;
+  overflow: hidden;
+  font-family: 'Lato', sans-serif;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 20px rgb(0 0 0 / 10%);
+  }
+}
+
+.card-container__image {
+  text-align: center;
+}
+
+.card-image {
+  width: 90%;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 10px;
+  font-size: 1rem;
+}
+
+.card-info__food {
+  font-family: $cardSpan;
+  font-weight: bolder;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  width: 75%;
+  font-weight: bold;
+  padding: 0 10px 10px 10px;
+}
+
+.card-info__price {
+  font-family: $cardPrice;
+  font-weight: bold;
 }
