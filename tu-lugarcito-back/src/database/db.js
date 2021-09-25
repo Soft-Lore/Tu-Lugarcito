@@ -9,6 +9,10 @@ db.connection = new Sequelize(
   config.development
 );
 
+db.Business_Type = require("../models/business_type")(db.connection, DataTypes);
+db.Home_Type = require("../models/home_type")(db.connection, DataTypes);
+db.Photos = require("../models/photos")(db.connection, DataTypes);
+db.Estate = require("../models/estate")(db.connection, DataTypes);
 db.User = require("../models/user")(db.connection, DataTypes);
 db.Role = require("../models/role")(db.connection, DataTypes);
 

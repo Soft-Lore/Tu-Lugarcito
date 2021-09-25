@@ -11,8 +11,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 
-app.use(express.static(path.resolve(__dirname, '../public')));
-
+app.use(require("./controllers/Rents/rents.routes"));
 app.use(require("./controllers/User/user.routes"));
+
+app.use(express.static(path.resolve(__dirname, "../public")));
 
 module.exports = app;

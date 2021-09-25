@@ -45,7 +45,7 @@ exports.google = async (req, res) => {
       } else {
         let token = generate_jwt_token(user);
 
-        return res.cookie("token", token).json({
+        return res.json({
           ok: true,
           usuario: user,
           token,

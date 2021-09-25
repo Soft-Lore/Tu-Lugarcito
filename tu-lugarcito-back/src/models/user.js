@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
         },
       });
+      models.User.hasmany(models.Estate);
     }
   }
   User.init(
@@ -24,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       activate: DataTypes.BOOLEAN,
       verified: DataTypes.BOOLEAN,
-      google:{
+      google: {
         type: DataTypes.BOOLEAN,
-        defaultValue:false
+        defaultValue: false,
       },
       roleid: {
         type: DataTypes.INTEGER,
