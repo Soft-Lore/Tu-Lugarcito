@@ -83,7 +83,7 @@ export default function NavBar() {
                   alt="user"
                   src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                 />
-                <span className="nav-username">{jwt.user.username}</span>
+                <span className="nav-username">{jwt?.user?.username || jwt?.name}</span>
               </div>
               <ul
                 className={
@@ -96,7 +96,7 @@ export default function NavBar() {
                   <NavLink to="#">Perfil</NavLink>
                 </li>
                 <li className="user-options__list">
-                  <NavLink to="#">Mis Sitios</NavLink>
+                  <NavLink to="/profile/site/fsdf">Mis Sitios</NavLink>
                 </li>
                 <li className="user-options__list">
                   <button onClick={toggleActive}>Cerrar Sesion</button>

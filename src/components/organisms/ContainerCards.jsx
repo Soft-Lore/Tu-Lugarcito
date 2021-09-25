@@ -1,9 +1,9 @@
 import React from "react";
 import { Card } from "../moleculs/index";
 
-export default function ContainerCards({ type, data }) {
+export default function ContainerCards({ type, data, cls }) {
   return (
-    <main className="main-sites">
+    <main className={"main-sites " + cls}>
       <form className="main-sites__header">
         <label className="sites-header__lbl">Resultados: 12/12</label>
         <select defaultValue="none" className="sites-header__select">
