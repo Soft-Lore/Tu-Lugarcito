@@ -1,28 +1,10 @@
-const jwt = require("jsonwebtoken");
+const { Token } = require("../services/tokens");
 
-let verify_token = (req, res, next) => {
+const verify_token = (req, res, next) => {
   let token = req.headers["token"];
-
-  if (!token) {
-    return res.status(401).json({
-      ok: false,
-      err: "Es necesario el Token de authenticacion",
-    });
-  }
-
-  jwt.verify(token, "secreta", (err, decode) => {
-    if (err) {
-      return res.status(401).json({
-        ok: false,
-        err: {
-          message: "Token no valido",
-        },
-      });
-    }
-
-    req.user = decode.user;
-    next();
-  });
+  const data = new Token(token).verify_token();
+  req.user = data;
+  next();
 };
 
 module.exports = {
