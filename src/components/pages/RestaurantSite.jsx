@@ -100,7 +100,7 @@ export default function Site() {
                   dataPostres.map((dt) => (
                     <div className="card__menu" key={dt.id}>
                       <div className="card-container__image">
-                        <img className="card-image" src={dt.img} alt="food"/>
+                        <img className="card-image__restaurant" src={dt.img} alt="food"/>
                       </div>
                       <div className="card-info">
                         <div className="card-info__food">{dt.name}</div>

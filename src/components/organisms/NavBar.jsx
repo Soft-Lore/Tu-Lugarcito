@@ -83,7 +83,7 @@ export default function NavBar() {
                   alt="user"
                   src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                 />
-                <span className="nav-username">{jwt.user.username}</span>
+                <span className="nav-username">{jwt?.user?.username || jwt?.name}</span>
               </div>
               <ul
                 className={
