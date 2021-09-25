@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavBar, ContainerCards, Footer } from "../organisms/index";
 import { BiAddToQueue } from "react-icons/bi";
 import TextField from "@material-ui/core/TextField";
@@ -11,77 +11,40 @@ import Button from "@material-ui/core/Button";
 import { IoMdSend, IoMdAddCircle } from "react-icons/io";
 import { data } from "../../data";
 import { BsHouseFill } from "react-icons/bs";
+import { useTabs, useSiteProfile } from '../hook/index'
+import { AiFillCheckCircle } from 'react-icons/ai'
+import { Error } from '../atoms/index'
+
+const options = [
+  { label: "Venta", name: "offer" },
+  { label: "Alquiler", name: "offer" },
+];
+
+const optionsPlayground = [
+  { label: "Sí", name: "backyar" },
+  { label: "No", name: "backyar" },
+];
+
+const optionsGarage = [
+  { label: "Sí", name: "garage" },
+  { label: "No", name: "garage" },
+];
+
+const optionsAlquiler = [
+  { label: "Casa", name: "type_of_rental" },
+  { label: "Solo habitacion", name: "type_of_rental" },
+  { label: "Departamento", name: "type_of_rental" },
+];
 
 export default function SiteProfile() {
-  const [tabs, setTabs] = useState(1);
-  const [site, setSite] = useState({
-    cover_page: null,
-    images: [],
-    type_of_rental: "",
-    backyar: "",
-    offer: "",
-    bedrooms: null,
-    garage: null,
-    bathrooms: null,
-    price: null,
-    address: "",
-    description: "",
-  });
-
-  function toggleTabs(i) {
-    setTabs(i);
-  }
-
-  const options = [
-    { label: "Venta", name: "offer" },
-    { label: "Alquiler", name: "offer" },
-  ];
-
-  const optionsPlayground = [
-    { label: "Sí", name: "backyar" },
-    { label: "No", name: "backyar" },
-  ];
-
-  const optionsGarage = [
-    { label: "Sí", name: "garage" },
-    { label: "No", name: "garage" },
-  ];
-
-  const optionsAlquiler = [
-    { label: "Casa", name: "type_of_rental" },
-    { label: "Solo habitacion", name: "type_of_rental" },
-    { label: "Departamento", name: "type_of_rental" },
-  ];
-
-  function handleInput(e) {
-    setSite({
-      ...site,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function toggleImage(e, secondary) {
-    if (e.target.files && e.target.files.length > 0) {
-      if (secondary) {
-        setSite({
-          ...site,
-          cover_page: e.target.files[0],
-        });
-      } else {
-        setSite({
-          ...site,
-          images: [...site.images, e.target.files[0]],
-        });
-      }
-    }
-  }
-
-  function handleOptions(event, value) {
-    setSite({
-      ...site,
-      [value.name]: value.label,
-    });
-  }
+  const {tabs, toggleTab} = useTabs(1);
+  const {
+    site,
+    handleInput,
+    handleOptions,
+    toggleImage,
+    toggleSubmit,
+  } = useSiteProfile()
 
   return (
     <>
@@ -89,7 +52,7 @@ export default function SiteProfile() {
       <nav className="tabs">
         <ul className="tabs-list">
           <li
-            onClick={() => toggleTabs(1)}
+            onClick={() => toggleTab(1)}
             className={
               tabs === 1
                 ? "tabs-list__item tabs-list__item-active"
@@ -100,7 +63,7 @@ export default function SiteProfile() {
             <IoMdAddCircle />
           </li>
           <li
-            onClick={() => toggleTabs(2)}
+            onClick={() => toggleTab(2)}
             className={
               tabs === 2
                 ? "tabs-list__item tabs-list__item-active"
@@ -122,8 +85,19 @@ export default function SiteProfile() {
               className="new-site__file"
               accept="image/gif, image/jpeg, image/png, image/svg"
             />
-            <BiAddToQueue />
-            <h4>Seleccione su foto para portada</h4>
+            {
+              site.cover_page ? (
+                <div className="new-site__image new-site__image-check">
+                  <AiFillCheckCircle />
+                  <h4>Imagen cargada correctamente</h4>
+                </div>
+              ) : (
+                <div className="new-site__image">
+                  <BiAddToQueue />
+                  <h4>Favor, seleccione su foto de portada</h4>
+                </div>
+              )
+            }
           </div>
           <div className="new-site__drapAndDrop">
             <input
@@ -132,9 +106,23 @@ export default function SiteProfile() {
               className="new-site__file"
               accept="image/gif, image/jpeg, image/png, image/svg"
             />
-            <BiAddToQueue />
+            {
+              site.images && site.images.length > 0 ? (
+                <div className={site.images.length >= 5 ? "new-site__image new-site__image-check" :"new-site__image"}>
+                  {
+                    site.images.map((m, index) => <span className="new-site__span" key={index}><AiFillCheckCircle/></span>)
+                  }
+                  <h4>Usted ha subido {site.images.length} imagenes. <br/> El maximo de imagenes a subir es 10</h4>
+                </div>
+              ) : (
+                <div className="new-site__image">
+                   <BiAddToQueue />
             <h4>Agregar fotos</h4>
             <span>O arrastrla y sueltalas</span>
+                </div>
+              )
+            }
+           
           </div>
           <Autocomplete
             onChange={handleOptions}
@@ -167,6 +155,7 @@ export default function SiteProfile() {
               onChange={(e) => handleInput(e)}
               name="bedrooms"
               label="Numero de habitaciones"
+              type="number"
             />
           </div>
           <Autocomplete
@@ -182,10 +171,11 @@ export default function SiteProfile() {
               name="bathrooms"
               fullWidth
               label="Numero de baños"
+              type="number"
             />
           </div>
           <div className="new-site__control new-site__textfield">
-            <FormControl fullWidth onChange={(e) => handleInput(e)}>
+            <FormControl fullWidth  onChange={(e) => handleInput(e)}>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Precio por mes
               </InputLabel>
@@ -218,9 +208,10 @@ export default function SiteProfile() {
               label="Descripcion de la propiedad"
             />
           </div>
+          {site.error && <Error error={site.error} />}
           <div className="new-site__send">
             <Button
-              onClick={() => console.log(site)}
+              onClick={toggleSubmit}
               fullWidth
               color="secondary"
               variant="contained"

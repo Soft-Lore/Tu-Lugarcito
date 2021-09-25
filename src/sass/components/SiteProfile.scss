@@ -112,3 +112,16 @@
     width: 95%;
     margin: auto;
 }
+
+.new-site__image {
+    text-align: center;
+
+    & > .new-site__span {
+        color: rgb(12, 136, 12);
+    }
+}
+
+.new-site__image-check {
+    color: rgb(12, 136, 12);
+    font-size: 1rem;
+}

@@ -42,6 +42,21 @@
   overflow: hidden;
   width: 100%;
 
+  @media screen and (max-width: 1050px) {
+    height: 70vh;
+  }
+
+  @media screen and (max-width: 770px) {
+    height: 50vh;
+  }
+
+  @media screen and (max-width: 520px) {
+    height: 35vh;
+  }
+  @media screen and (max-width: 350px) {
+    height: 25vh;
+  }
+
   .site-section__btn {
     padding: 10px;
     background-color: $primary;
