@@ -1,8 +1,8 @@
 import React from "react";
-import { NavBar } from "../organisms/index";
 import { useLoading } from "../hook/index";
 import { Spinner } from "../atoms/index";
 import { Carrousel } from "../moleculs";
+import { Footer } from "../organisms/index";
 
 const images = [
   "https://picsum.photos/1200/700?grayscale",
@@ -18,7 +18,6 @@ export default function Site() {
     <>
       {loading ? (
         <>
-          <NavBar />
           <main className="site">
             <Carrousel images={images}/>
             <div className="site-section site-section__two">
@@ -57,6 +56,7 @@ export default function Site() {
               </div>
             </div>
           </main>
+          <Footer />
         </>
       ) : (
         <Spinner />

@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { ControlInput } from "../moleculs/index";
-import { NavBar } from "../organisms/index";
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useHistory } from "react-router";
 import image from "../../images/register.svg";
-import { Footer } from "../organisms/index";
 import { useField } from "../hook/index";
 import { Error } from "../atoms/index";
-import { register, googleSignIn } from "../../services/auth";
+import { register, googleSignIn } from "../../utils/services/auth";
 import GoogleLogin from 'react-google-login';
 import { FcGoogle } from 'react-icons/fc'
+import { Footer } from '../organisms/index'
 
 export default function Register() {
   const { form, handleInput } = useField();
@@ -32,7 +31,6 @@ export default function Register() {
           ></path>
         </svg>
       </div>
-      <NavBar />
       <div className="form">
         <img src={image} alt="" className="form-image" />
         <form

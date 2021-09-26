@@ -28,7 +28,9 @@
   }
   
   .error-secondary,
-  .success-message {
+  .success-message,
+  .success-message__profile,
+  .success-message__profile-loading {
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-between;
@@ -51,7 +53,7 @@
       cursor: pointer;
     }
   }
-  
+
   .error-secondary {
     background-image: linear-gradient(rgb(211, 69, 69), rgb(199, 78, 78));
   }
@@ -59,7 +61,17 @@
   .success-message {
     background-image: linear-gradient(rgb(42, 141, 17), rgb(55, 153, 16));
   }
-  
+
+  .success-message__profile {
+    bottom: auto;
+    background-image: linear-gradient(rgb(69, 147, 211), rgb(130, 188, 235));
+  }
+
+  .success-message__profile-loading {
+    bottom: auto;
+    background-image: linear-gradient(rgb(238, 163, 50), rgb(247, 140, 19));
+  }
+
   .error-paragraph {
     padding: 0;
     margin: 0;

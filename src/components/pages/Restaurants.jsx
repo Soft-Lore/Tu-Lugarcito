@@ -2,9 +2,8 @@ import React from "react";
 import {
   Header,
   ContainerCards,
-  NavBar,
   FormContact,
-  Footer,
+  Footer
 } from "../organisms/index";
 import { data } from "../../dataRestaurants";
 import { useLoading } from "../hook/index";
@@ -17,7 +16,6 @@ export default function Home() {
     <div className="home">
       {loading ? (
         <>
-          <NavBar />
           <Header
             className="header header-restaurants"
             title="¡Si un día sientes un vacio come es "

@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { IoMdBed } from "react-icons/io";
 import { GiShower, GiHomeGarage, GiHotMeal } from "react-icons/gi";
-import { BiDrink } from "react-icons/bi";
+import { BiDrink, BiEdit } from "react-icons/bi";
 import { ImPacman } from "react-icons/im";
 import { useHistory } from "react-router";
 import { useLazyLoading } from "../hook/index";
+import { RiDeleteBin5Line } from 'react-icons/ri'
 
 export default function Card({
   img,
@@ -14,7 +15,7 @@ export default function Card({
   bathroom,
   garage,
   id,
-  type,
+  type
 }) {
   const history = useHistory();
   const cardRef = useRef();
@@ -24,9 +25,10 @@ export default function Card({
     <div
       className="card"
       onClick={
-        type !== "restaurant"
-          ? () => history.push(`/site/${id}`)
-          : () => history.push(`/restaurantSite/${id}`)
+        type  !== "estate-site" ? ( type !== "restaurant"
+        ? () => history.push(`/site/${id}`)
+        : () => history.push(`/restaurantSite/${id}`)
+        ) : null
       }
       ref={cardRef}
     >
@@ -85,21 +87,31 @@ export default function Card({
                   </div>
                 </>
               )}
-            </div>
-            <button
-              className={
-                type === "restaurant"
-                  ? "card-footer__item card-footer__button card-footer__button-restaurant"
-                  : "card-footer__item card-footer__button"
-              }
-            >
-              Ver Mas
-              <img
-                className="footer-button__icon"
-                src="https://i.postimg.cc/2jh0DBYy/next.png"
-                alt="ver-mas"
-              />
-            </button>
+            </div>{
+              type  !== "estate-site" ? (
+                <button
+                className={
+                  type === "restaurant"
+                    ? "card-footer__item card-footer__button card-footer__button-restaurant"
+                    : "card-footer__item card-footer__button"
+                }
+              >
+                Ver Mas
+                <img
+                  className="footer-button__icon"
+                  src="https://i.postimg.cc/2jh0DBYy/next.png"
+                  alt="ver-mas"
+                />
+              </button>
+              ) : <div className="card-actions">
+                <span className="card-actions__edit" onClick={() => console.log("Editado")}>
+                  <BiEdit />
+                </span>
+                <span className="card-actions__delete" onClick={() => console.log("Eliminado")}>
+                  <RiDeleteBin5Line />
+                </span>
+              </div>
+            }
           </div>
         </>
       ) : (

@@ -6,7 +6,7 @@ import { IoMdRestaurant } from "react-icons/io";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
-import { logOut } from "../../services/auth";
+import { logOut } from "../../utils/services/auth";
 import context from "../context/tokenContext";
 import { useModal } from "../hook/index";
 import { ModalComponent } from "../moleculs/index";

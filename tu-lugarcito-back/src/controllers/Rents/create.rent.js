@@ -63,7 +63,7 @@ exports.Create_rent = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             ok: false,
-            message: "Sucedio un error",
+           error
         })
     }
 

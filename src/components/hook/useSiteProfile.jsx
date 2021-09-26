@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { createSite } from "../../utils/services/sites";
 
-export default function useSiteProfile() {
+export default function useSiteProfile(id, setMessage, setSucess, setError) {
   const [site, setSite] = useState({
     cover_page: null,
     images: [],
@@ -38,7 +39,6 @@ export default function useSiteProfile() {
       }
     }
   }
-
   function handleOptions(event, value) {
     setSite({
       ...site,
@@ -106,7 +106,8 @@ export default function useSiteProfile() {
         ...site,
         error: null,
       });
-      console.log(site);
+      setMessage("Cargando, Favor espere un momento...");
+      createSite(site, id, setMessage, setSucess, setError);
     }
   }
 

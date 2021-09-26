@@ -1,5 +1,5 @@
-import React from "react";
-import { NavBar, ContainerCards, Footer } from "../organisms/index";
+import React, { useContext, useState } from "react";
+import { ContainerCards } from "../organisms/index";
 import { BiAddToQueue } from "react-icons/bi";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/core/Autocomplete";
@@ -11,44 +11,30 @@ import Button from "@material-ui/core/Button";
 import { IoMdSend, IoMdAddCircle } from "react-icons/io";
 import { data } from "../../data";
 import { BsHouseFill } from "react-icons/bs";
-import { useTabs, useSiteProfile } from '../hook/index'
-import { AiFillCheckCircle } from 'react-icons/ai'
-import { Error } from '../atoms/index'
-
-const options = [
-  { label: "Venta", name: "offer" },
-  { label: "Alquiler", name: "offer" },
-];
-
-const optionsPlayground = [
-  { label: "Sí", name: "backyar" },
-  { label: "No", name: "backyar" },
-];
-
-const optionsGarage = [
-  { label: "Sí", name: "garage" },
-  { label: "No", name: "garage" },
-];
-
-const optionsAlquiler = [
-  { label: "Casa", name: "type_of_rental" },
-  { label: "Solo habitacion", name: "type_of_rental" },
-  { label: "Departamento", name: "type_of_rental" },
-];
+import { useTabs, useSiteProfile } from "../hook/index";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { Error } from "../atoms/index";
+import { parseJwt } from "../functions/decryptToken";
+import context from "../context/tokenContext";
+import {
+  options,
+  optionsPlayground,
+  optionsGarage,
+  optionsAlquiler,
+} from "../../utils/const/sitesFormOpcions";
 
 export default function SiteProfile() {
-  const {tabs, toggleTab} = useTabs(1);
-  const {
-    site,
-    handleInput,
-    handleOptions,
-    toggleImage,
-    toggleSubmit,
-  } = useSiteProfile()
+  const [message, setMessage] = useState("");
+  const [sucess, setSucess] = useState("");
+  const [error, setError] = useState("");
+  const { token } = useContext(context);
+  const jwt = token ? parseJwt(token) : undefined;
+  const { tabs, toggleTab } = useTabs(1);
+  const { site, handleInput, handleOptions, toggleImage, toggleSubmit } =
+    useSiteProfile(jwt?.user?.id | jwt.id, setMessage, setSucess, setError);
 
   return (
     <>
-      <NavBar />
       <nav className="tabs">
         <ul className="tabs-list">
           <li
@@ -85,19 +71,17 @@ export default function SiteProfile() {
               className="new-site__file"
               accept="image/gif, image/jpeg, image/png, image/svg"
             />
-            {
-              site.cover_page ? (
-                <div className="new-site__image new-site__image-check">
-                  <AiFillCheckCircle />
-                  <h4>Imagen cargada correctamente</h4>
-                </div>
-              ) : (
-                <div className="new-site__image">
-                  <BiAddToQueue />
-                  <h4>Favor, seleccione su foto de portada</h4>
-                </div>
-              )
-            }
+            {site.cover_page ? (
+              <div className="new-site__image new-site__image-check">
+                <AiFillCheckCircle />
+                <h4>Imagen cargada correctamente</h4>
+              </div>
+            ) : (
+              <div className="new-site__image">
+                <BiAddToQueue />
+                <h4>Favor, seleccione su foto de portada</h4>
+              </div>
+            )}
           </div>
           <div className="new-site__drapAndDrop">
             <input
@@ -106,29 +90,38 @@ export default function SiteProfile() {
               className="new-site__file"
               accept="image/gif, image/jpeg, image/png, image/svg"
             />
-            {
-              site.images && site.images.length > 0 ? (
-                <div className={site.images.length >= 5 ? "new-site__image new-site__image-check" :"new-site__image"}>
-                  {
-                    site.images.map((m, index) => <span className="new-site__span" key={index}><AiFillCheckCircle/></span>)
-                  }
-                  <h4>Usted ha subido {site.images.length} imagenes. <br/> El maximo de imagenes a subir es 10</h4>
-                </div>
-              ) : (
-                <div className="new-site__image">
-                   <BiAddToQueue />
-            <h4>Agregar fotos</h4>
-            <span>O arrastrla y sueltalas</span>
-                </div>
-              )
-            }
-           
+            {site.images && site.images.length > 0 ? (
+              <div
+                className={
+                  site.images.length >= 5
+                    ? "new-site__image new-site__image-check"
+                    : "new-site__image"
+                }
+              >
+                {site.images.map((m, index) => (
+                  <span className="new-site__span" key={index}>
+                    <AiFillCheckCircle />
+                  </span>
+                ))}
+                <h4>
+                  Usted ha subido {site.images.length} imagenes. <br /> Debe
+                  subir minimo como 5 imagenes y como maximo 10
+                </h4>
+              </div>
+            ) : (
+              <div className="new-site__image">
+                <BiAddToQueue />
+                <h4>Agregar fotos</h4>
+                <span>O arrastrla y sueltalas</span>
+              </div>
+            )}
           </div>
           <Autocomplete
             onChange={handleOptions}
             className="new-site__control"
             disablePortal
             options={options}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             renderInput={(params) => (
               <TextField {...params} label="Propiedad en venta o alquiler" />
             )}
@@ -138,6 +131,7 @@ export default function SiteProfile() {
             className="new-site__control"
             disablePortal
             options={optionsPlayground}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             renderInput={(params) => <TextField {...params} label="Patio" />}
           />
           <Autocomplete
@@ -145,6 +139,7 @@ export default function SiteProfile() {
             disablePortal
             className="new-site__control"
             options={optionsAlquiler}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             renderInput={(params) => (
               <TextField {...params} label="Tipo de alquiler" />
             )}
@@ -163,6 +158,7 @@ export default function SiteProfile() {
             className="new-site__control"
             disablePortal
             options={optionsGarage}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             renderInput={(params) => <TextField {...params} label="Garage" />}
           />
           <div className="new-site__control new-site__textfield">
@@ -175,7 +171,7 @@ export default function SiteProfile() {
             />
           </div>
           <div className="new-site__control new-site__textfield">
-            <FormControl fullWidth  onChange={(e) => handleInput(e)}>
+            <FormControl fullWidth onChange={(e) => handleInput(e)}>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Precio por mes
               </InputLabel>
@@ -224,10 +220,26 @@ export default function SiteProfile() {
       </div>
       <ContainerCards
         cls={tabs === 2 ? "main-sites" : "tabs-hidden"}
-        type="estate"
+        type="estate-site"
         data={data}
       />
-      <Footer />
+      {message && (
+        <Error
+          cls="error-secondary success-message__profile-loading"
+          setError={setMessage}
+          error={message}
+        />
+      )}
+      {sucess && (
+        <Error
+          cls="error-secondary success-message__profile"
+          setError={setSucess}
+          error={sucess}
+        />
+      )}
+      {error && (
+        <Error cls="error-secondary" setError={setError} error={error} />
+      )}
     </>
   );
 }

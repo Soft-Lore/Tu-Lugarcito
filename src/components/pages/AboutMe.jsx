@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBar, Header, Footer } from "../organisms/index";
+import { Header, Footer } from "../organisms/index";
 import { ArticleContent } from "../moleculs/index";
 import logo from "../../images/logo.png";
 import { useLoading } from "../hook/index";
@@ -12,7 +12,6 @@ export default function AboutMe() {
     <>
       {loading ? (
         <>
-          <NavBar />
           <Header
             className="header header-aboutMe"
             title="¡Todos conocemos a un "

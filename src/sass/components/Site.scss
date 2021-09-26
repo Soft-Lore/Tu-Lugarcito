@@ -124,6 +124,9 @@
 }
 
 .site-section__two {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 20px;
 
   @media screen and (max-width: 600px) {

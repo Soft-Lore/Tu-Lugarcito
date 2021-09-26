@@ -1,11 +1,11 @@
 import React from 'react'
 import { useTabs } from "../hook/index";
-import { NavBar } from "../organisms/index";
 import { GiCupcake } from "react-icons/gi";
 import { BiDrink, BiFoodMenu } from "react-icons/bi";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { dataDesayuno, dataAlmuerzo, dataBebidas, dataPostres } from "../../dataMenuRestaurant"
 import { Carrousel } from "../moleculs/index"
+import { Footer } from "../organisms/index";
 
 const images = [
   "https://picsum.photos/1280/720?grayscale",
@@ -19,7 +19,6 @@ export default function Site() {
   
 	return (
 		<>
-			<NavBar />
 			<main className="restaurant-site">
         <Carrousel images={images} className="restaurant-slider__item" />
 				<div className="site-section__menu">
@@ -115,6 +114,7 @@ export default function Site() {
           </div>
 				</div>
 			</main>
+      <Footer />
 		</>
 	)
 }

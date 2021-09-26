@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "../moleculs/index";
 
-export default function ContainerCards({ type, data, cls }) {
+export default function ContainerCards({ type, data, cls, profile }) {
   return (
     <main className={"main-sites " + cls}>
       <form className="main-sites__header">

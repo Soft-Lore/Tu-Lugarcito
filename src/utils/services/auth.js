@@ -23,7 +23,7 @@ export const register = async (e, form, setError, setMessage) => {
       data.append("passwordConfirmation", form.passwordConfirmation.value);
       data.append("role", "cliente");
 
-      await fetch("http://localhost:4000/api/newUser", {
+      await fetch("/api/newUser", {
         method: "POST",
         body: data,
         headers: {
@@ -66,7 +66,7 @@ export const login = async (e, form, setError, getIsToken) => {
     data.append("username", form.username.value);
     data.append("password", form.password.value);
 
-    await fetch("http://localhost:4000/api/login", {
+    await fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -105,7 +105,7 @@ export const googleSignIn = async (googleData, history, setError) => {
   const data = new URLSearchParams();
   data.append("idtoken", id_token)
 
-  await fetch("http://localhost:4000/google", {
+  await fetch("/google", {
         method: "POST",
         body: data,
         headers: {
