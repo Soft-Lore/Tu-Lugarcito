@@ -1,5 +1,7 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Estate extends Model {
     /**
@@ -14,33 +16,56 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
         },
       });
-      models.User.hasmany(models.Home_Type);
-      models.User.hasmany(models.Business_Types);
-      models.User.hasmany(models.Photos);
-    }
-  }
-  Estate.init(
-    {
-      price: DataTypes.INTEGER,
-      bedrooms: DataTypes.INTEGER,
-      bathrooms: DataTypes.INTEGER,
-      backyar: DataTypes.BOOLEAN,
-      garage: DataTypes.BOOLEAN,
-      address: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      id_user: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Users",
-          key: "id",
+      models.Estate.belongsTo(models.Home_Type, {
+        foreingKey: {
+          allowNull: false,
         },
+      });
+      models.Estate.belongsTo(models.Business_Type, {
+        foreingKey: {
+          allowNull: false,
+        },
+      });
+
+      models.Estate.hasmany(models.Photo);
+
+    }
+  };
+  Estate.init({
+    price: DataTypes.INTEGER,
+    bedrooms: DataTypes.INTEGER,
+    bathrooms: DataTypes.INTEGER,
+    backyar: DataTypes.BOOLEAN,
+    garage: DataTypes.BOOLEAN,
+    address: DataTypes.STRING,
+    description: DataTypes.TEXT,
+    id_user: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Users",
+        key: "id",
       },
     },
-    {
-      sequelize,
-      modelName: "Estate",
+    id_home:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Home_Types",
+        key: "id",
+      },
+    },
+    id_business:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Business_Types",
+        key: "id",
+      },
     }
-  );
+  }, {
+    sequelize,
+    modelName: 'Estate',
+  });
   return Estate;
 };

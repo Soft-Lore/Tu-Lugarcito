@@ -11,26 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Business_Type.belongsTo(models.Estate, {
-        foreingKey: {
-          allowNull: false,
-        },
-      });
+      models.Business_Type.hasmany(models.Estate);
     }
   };
   Business_Type.init({
-    offer:{
-      type:DataTypes.ENUM,
+    type_offer: {
+      type: DataTypes.ENUM,
       values: ["alquiler", "venta"],
       defaultValue: "venta",
-    },
-    estate_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "Estates",
-        key: "id",
-      },
     }
   }, {
     sequelize,
