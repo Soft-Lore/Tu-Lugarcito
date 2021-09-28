@@ -52,7 +52,9 @@ exports.google = async (req, res) => {
         });
       }
     } else {
-      const role = await Role.create({ role: "cliente" });
+      const role =
+        (await Role.findOne({ where: { role: 'cliente' } })) ||
+        (await Role.create({ role: 'cliente' }));
 
       User.create({
         username: googleUser.username,
