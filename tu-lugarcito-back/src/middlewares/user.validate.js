@@ -1,5 +1,5 @@
 const { validationResult, body } = require("express-validator");
-const { Role, User } = require("../database/db");
+const User = require('../database/models/User')
 
 const user_singup_validate = () => {
   return [
