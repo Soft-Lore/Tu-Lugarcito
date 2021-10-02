@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { IoMdBed } from "react-icons/io";
-import { GiShower, GiHomeGarage, GiHotMeal } from "react-icons/gi";
-import { BiDrink, BiEdit } from "react-icons/bi";
-import { ImPacman } from "react-icons/im";
+import { GiShower, GiHomeGarage } from "react-icons/gi";
+import { BiEdit } from "react-icons/bi";
+import { MdSchedule } from "react-icons/md";
 import { useHistory } from "react-router";
 import { useLazyLoading } from "../hook/index";
 import { RiDeleteBin5Line } from 'react-icons/ri'
@@ -45,30 +45,12 @@ export default function Card({
                 <>
                   <div
                     className="card-footer__room card-footer__room-restaurant"
-                    title="Platillos"
-                  >
-                    <span className="card-footer__span card-footer__span-restaurant">
-                      {room}
-                    </span>
-                    <GiHotMeal />
-                  </div>
-                  <div
-                    className="card-footer__room card-footer__room-restaurant"
                     title="Bebidas"
                   >
-                    <span className="card-footer__span card-footer__span-restaurant">
+                    <span className="card-footer__restaurant">
                       {bathroom}
                     </span>
-                    <BiDrink />
-                  </div>
-                  <div
-                    className="card-footer__room card-footer__room-restaurant"
-                    title="Comida rapida"
-                  >
-                    <span className="card-footer__span card-footer__span-restaurant">
-                      {garage}
-                    </span>
-                    <ImPacman />
+                    <MdSchedule />
                   </div>
                 </>
               ) : (

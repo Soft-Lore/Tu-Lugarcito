@@ -1,12 +1,7 @@
 import React from 'react'
-import { useLoading } from '../hook/index'
 
 export default function Footer() {
-    const { loading } = useLoading()
     return (
-      <>
-        {
-            loading && (
                 <footer className="footer">
                 <p className="footer-paragraph">Todos los derechos reservados</p>   
                 <h3 className="footer-title">TEAM FORANEOS</h3>
@@ -26,8 +21,5 @@ export default function Footer() {
                     </a>
                 </div>
             </footer>
-            )
-        }
-      </>
     )
 }

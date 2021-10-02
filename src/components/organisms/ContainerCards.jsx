@@ -18,11 +18,9 @@ export default function ContainerCards({ type, data, cls, profile }) {
           ? data.map((dt) => (
               <Card
                 img={dt.img}
-                price={dt.location}
-                location={dt.name}
-                room={dt.foots}
-                bathroom={dt.drinks}
-                garage={dt.rapid}
+                price={dt.name.substring(0, 15) + "..."}
+                location={dt.days}
+                bathroom={dt.schedule.open + "-" + dt.schedule.close}
                 id={dt.id}
                 key={dt.id}
                 type={type}

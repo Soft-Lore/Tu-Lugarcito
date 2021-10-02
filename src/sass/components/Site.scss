@@ -94,12 +94,11 @@
 
 .site-slider {
   position: relative;
-  display: flex;
-  flex-direction: row;
+  display: grid;
 }
 
 .restaurant-slider__item {
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
   height: auto;
 }
