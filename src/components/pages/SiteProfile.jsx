@@ -22,6 +22,7 @@ import {
   optionsGarage,
   optionsAlquiler,
 } from "../../utils/const/sitesFormOpcions";
+import { userOptions } from '../../optionsSelect'
 
 export default function SiteProfile() {
   const [message, setMessage] = useState("");
@@ -31,7 +32,7 @@ export default function SiteProfile() {
   const jwt = token ? parseJwt(token) : undefined;
   const { tabs, toggleTab } = useTabs(1);
   const { site, handleInput, handleOptions, toggleImage, toggleSubmit } =
-    useSiteProfile(jwt?.user?.id | jwt.id, setMessage, setSucess, setError);
+    useSiteProfile(jwt?.user?.id | jwt?.id, setMessage, setSucess, setError);
 
   return (
     <>
@@ -222,6 +223,7 @@ export default function SiteProfile() {
         cls={tabs === 2 ? "main-sites" : "tabs-hidden"}
         type="estate-site"
         data={data}
+        options={userOptions}
       />
       {message && (
         <Error

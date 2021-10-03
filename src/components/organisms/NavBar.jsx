@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import logo from "../../images/logo-white.png";
 import { BiHome } from "react-icons/bi";
 import { IoMdRestaurant } from "react-icons/io";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
 import { logOut } from "../../utils/services/auth";
 import context from "../context/tokenContext";
 import { useModal } from "../hook/index";
@@ -19,11 +18,14 @@ export default function NavBar() {
   const [active, toggleActive] = useModal();
   const jwt = token ? parseJwt(token) : undefined;
   const history = useHistory();
+  const location = useLocation()
+
+  console.log(location.pathname)
 
   return (
     <>
       <nav className="nav">
-        <img src={logo} alt="logo" className="nav-logo" />
+        <img src={logo} alt="logo" className="nav-logo" onClick={() => history.push("/inmuebles")} />
         <div
           className={!menu ? "nav-collapse" : "nav-collapse nav-collapse__show"}
         >
@@ -37,9 +39,11 @@ export default function NavBar() {
             <li>
               <NavLink
                 className={
-                  !menu
-                    ? "nav-collapse__list-item"
-                    : "nav-collapse__list-item nav-collapse__list-item__show"
+                  location.pathname === "/inmuebles" ? !menu
+                  ? "nav-collapse__list-item nav-active"
+                  : "nav-collapse__list-item nav-collapse__list-item__show nav-active" : !menu
+                  ? "nav-collapse__list-item"
+                  : "nav-collapse__list-item nav-collapse__list-item__show"
                 }
                 to="/inmuebles"
               >
@@ -50,9 +54,11 @@ export default function NavBar() {
             <li>
               <NavLink
                 className={
-                  !menu
-                    ? "nav-collapse__list-item"
-                    : "nav-collapse__list-item nav-collapse__list-item__show"
+                  location.pathname === "/restaurants" ? !menu
+                  ? "nav-collapse__list-item nav-active"
+                  : "nav-collapse__list-item nav-collapse__list-item__show nav-active" : !menu
+                  ? "nav-collapse__list-item"
+                  : "nav-collapse__list-item nav-collapse__list-item__show"
                 }
                 to="/restaurants"
               >
@@ -64,9 +70,11 @@ export default function NavBar() {
             <li>
               <NavLink
                 className={
-                  !menu
-                    ? "nav-collapse__list-item"
-                    : "nav-collapse__list-item nav-collapse__list-item__show"
+                  location.pathname === "/about-me" ? !menu
+                  ? "nav-collapse__list-item nav-active"
+                  : "nav-collapse__list-item nav-collapse__list-item__show nav-active" : !menu
+                  ? "nav-collapse__list-item"
+                  : "nav-collapse__list-item nav-collapse__list-item__show"
                 }
                 to="/about-me"
               >

@@ -24,11 +24,11 @@ export const routes = {
       component: AboutMe,
     },
     {
-      path: "/site/:id",
+      path: "/inmuebles/:id",
       component: Site,
     },
     {
-      path: "/restaurantSite/:id",
+      path: "/restaurants/:id",
       component: RestaurantSite,
     },
     {
@@ -54,11 +54,11 @@ export const routes = {
       component: AboutMe,
     },
     {
-      path: "/site/:id",
+      path: "/inmuebles/:id",
       component: Site,
     },
     {
-      path: "/restaurantSite/:id",
+      path: "/restaurants/:id",
       component: RestaurantSite,
     },
     {

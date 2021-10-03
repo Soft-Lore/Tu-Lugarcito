@@ -15,7 +15,8 @@ export default function Card({
   bathroom,
   garage,
   id,
-  type
+  type,
+  rute
 }) {
   const history = useHistory();
   const cardRef = useRef();
@@ -24,12 +25,7 @@ export default function Card({
   return (
     <div
       className="card"
-      onClick={
-        type  !== "estate-site" ? ( type !== "restaurant"
-        ? () => history.push(`/site/${id}`)
-        : () => history.push(`/restaurantSite/${id}`)
-        ) : null
-      }
+      onClick={() => history.push(`/${rute}/${id}`)}
       ref={cardRef}
     >
       {show ? (
