@@ -2,13 +2,13 @@ import React from "react";
 import { ImNext, ImBackward } from "react-icons/im";
 import { useCarrousel } from "../hook/index";
 
-export default function Carrousel({ images, ...rest }) {
+export default function Carrousel({ images, cls, ...rest }) {
   const { index, toggleBack, toggleNext, updateIndex } = useCarrousel(
     images.length
   );
 
   return (
-    <div className="site-section site-container__slider restaurant-site__slider">
+    <div className={`site-section site-container__slider ${cls}`}>
       <div className="slider-items__span">
         {images &&
           images.map((img, i) => (
@@ -23,10 +23,12 @@ export default function Carrousel({ images, ...rest }) {
             ></button>
           ))}
       </div>
-      <ImBackward
+      <button
         className="site-section__next site-section__btn"
         onClick={() => toggleNext()}
-      />
+      >
+        <ImBackward />
+      </button>
       <div
         className="site-slider"
         style={{
@@ -45,10 +47,12 @@ export default function Carrousel({ images, ...rest }) {
             />
           ))}
       </div>
-      <ImNext
+      <button
         className="site-section__back site-section__btn"
         onClick={() => toggleBack()}
-      />
+      >
+        <ImNext />
+      </button>
     </div>
   );
 }
