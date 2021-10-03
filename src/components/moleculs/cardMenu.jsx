@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MenuType({data}) {
+export default function CardMenu({ data }) {
   return (
     <div className="card__menu" key={data.id}>
       <div className="card-container__image">

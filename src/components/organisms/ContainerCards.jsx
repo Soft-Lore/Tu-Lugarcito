@@ -5,7 +5,7 @@ export default function ContainerCards({ type, data, cls, options }) {
   return (
     <main className={"main-sites " + cls}>
       <form className="main-sites__header">
-        <label className="sites-header__lbl">Resultados: 12/12</label>
+        <label className="sites-header__lbl">Resultados encontrados: {data.length}</label>
         <select defaultValue="none" className="sites-header__select">
           {
             options.map(option => <option value={option.name}>{option.value}</option>)
