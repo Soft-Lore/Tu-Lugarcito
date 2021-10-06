@@ -1,4 +1,4 @@
-const { User } = require("../../database/db");
+const User = require("../../database/models/User");
 const { Token } = require("../../services/tokens");
 
 exports.confirm_email = async (req, res) => {
@@ -15,7 +15,7 @@ exports.confirm_email = async (req, res) => {
     });
   }
   const user_update = await User.update({ verified: true }, { where: { id: user.id } });
-  
+
   !user_update
     ? res.status(404).json({ ok: false, message: "Usuario no encontrado" })
     : res.status(201).redirect("http://localhost:3000/login");

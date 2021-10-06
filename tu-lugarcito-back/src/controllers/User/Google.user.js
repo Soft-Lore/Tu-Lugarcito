@@ -1,6 +1,7 @@
 const { OAuth2Client } = require("google-auth-library");
 const { generate_jwt_token } = require("../../services/generate.JWT");
-const { User, Role } = require("../../database/db");
+const User = require("../../database/models/User");
+const Role = require("../../database/models/Role");
 const client = new OAuth2Client(
   "1014670675453-vna7io3paffh2lv386tek6u2b108l3fv.apps.googleusercontent.com"
 );

@@ -1,10 +1,11 @@
-const { Role, User } = require("../../database/db");
+const Role = require('../../database/models/Role');
+const User = require('../../database/models/User');
 const { Token } = require("../../services/tokens");
 const { get_template, send_email } = require("../../services/verify.email");
 
 exports.new_user = async (req, res) => {
   let body = req.body;
-
+  
   try {
     const role =
       (await Role.findOne({ where: { role: body.role } })) ||
@@ -14,7 +15,7 @@ exports.new_user = async (req, res) => {
       username: body.username,
       email: body.email,
       password: body.password,
-      roleid: role.id,
+      RoleId: role.id,
     });
 
     const token = new Token().generate_token(user,"10m");
