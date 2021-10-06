@@ -1,15 +1,23 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../db");
 
-class Restaurant extends Model { }
+class Menu extends Model { }
 
-Restaurant.init({
+Menu.init({
+    photo:{
+        type:DataTypes.STRING,
+        allowNull: false
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    address: {
-        type: DataTypes.STRING,
+    price: {
+        type: DataTypes.DECIMAL,
+        allowNull: false
+    },
+    description: {
+        type: DataTypes.TEXT,
         allowNull: false
     },
     available: {
@@ -19,7 +27,7 @@ Restaurant.init({
 }, {
     sequelize,
     timestamps: false,
-    modelName: 'Restaurants'
+    modelName: 'Menus'
 });
 
-module.exports = Restaurant;
+module.exports = Menu;
