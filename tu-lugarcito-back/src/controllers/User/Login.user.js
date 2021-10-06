@@ -41,5 +41,6 @@ exports.Login = async (req, res) => {
     ok: true,
     message: "Usuario autenticado correctamente",
     token,
+    user
   });
 };

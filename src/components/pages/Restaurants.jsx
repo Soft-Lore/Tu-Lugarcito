@@ -8,7 +8,7 @@ import {
 // import { data } from "../../dataRestaurants";
 import { useLoading, useGetData } from "../hook/index";
 import { Spinner } from '../atoms/index'
-import { generalOptions } from '../../optionsSelect'
+import { generalOptions } from '../../utils/const/sitesFormOpcions'
 
 export default function Home() {
   const { loading } = useLoading();

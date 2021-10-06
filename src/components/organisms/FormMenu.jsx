@@ -104,7 +104,7 @@ export default function FormMenu({
             {site.error && <Error error={site.error} />}
             <div className="new-site__send">
               <Button
-                onClick={toggleSubmit}
+                onClick={ () => toggleSubmit(id)}
                 fullWidth
                 color="secondary"
                 variant="contained"

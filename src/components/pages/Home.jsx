@@ -2,7 +2,7 @@ import React from 'react'
 import { Header, ContainerCards, FormContact, Footer } from '../organisms/index'
 import { useLoading, useGetData } from '../hook/index'
 import { Spinner } from '../atoms/index'
-import { generalOptions } from '../../optionsSelect'
+import { generalOptions } from '../../utils/const/sitesFormOpcions'
  
 export default function Home() {
     const { loading } = useLoading()

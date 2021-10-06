@@ -83,6 +83,7 @@ export const login = async (e, form, setError, getIsToken) => {
           }, 4000);
         }
         else {
+          localStorage.setItem('user', JSON.stringify(resp.user.id))
           cookies.set("token", resp.token)
           getIsToken()
           window.location.replace("/");
@@ -115,6 +116,7 @@ export const googleSignIn = async (googleData, history, setError) => {
       }).then(response => response.json())
       .then(resp => {
         if(resp.ok){
+          localStorage.setItem('user', JSON.stringify(resp.usuario.id))
           cookies.set("token", resp.token)
           window.location.replace("/");
         }else {
@@ -126,5 +128,6 @@ export const googleSignIn = async (googleData, history, setError) => {
 
 export const logOut = async () => {
   cookies.remove("token")
+  localStorage.removeItem('user')
   window.location.replace("/");
 }

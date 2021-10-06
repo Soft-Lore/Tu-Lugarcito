@@ -15,6 +15,5 @@ routes.get("/api/all_businnes_user/:id", all_estates_user);
 routes.get("/api/one_business/:id", get_one_estate_user);
 
 routes.get("/api/all_business/", all_estates);
- 
 
 module.exports = routes;

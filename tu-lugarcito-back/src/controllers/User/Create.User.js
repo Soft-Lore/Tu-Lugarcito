@@ -29,6 +29,7 @@ exports.new_user = async (req, res) => {
       message:
         "Usuario registrado exitosamente! Por favor verifique su correo ❤",
       user,
+      role: Role.role
     });
   } catch (error) {
     res.status(500).json({

@@ -169,7 +169,7 @@ export default function useSiteProfile(id, setMessage, setSucess, setError) {
     }
   }
 
-  const toggleCreateMenu = () => {
+  const toggleCreateMenu = (id) => {
     if (!site.cover_page) {
       setSite({
         ...site,

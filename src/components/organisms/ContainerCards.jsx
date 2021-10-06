@@ -3,7 +3,6 @@ import { Card } from "../moleculs/index";
 import { Spinner } from '../atoms/index'
 
 export default function ContainerCards({ type, data, cls, rute, options, ...rest }) {
-
   return (
     <main className={"main-sites " + cls}>
       {
@@ -11,7 +10,7 @@ export default function ContainerCards({ type, data, cls, rute, options, ...rest
           <>
           <form className="main-sites__header">
         <label className="sites-header__lbl">Resultados encontrados: {data.estate_result.count}</label>
-        <select defaultValue="none" className="sites-header__select">
+        <select className="sites-header__select">
           {
             options.map((option, index) => <option key={index} value={option.name}>{option.value}</option>)
           }
@@ -23,7 +22,7 @@ export default function ContainerCards({ type, data, cls, rute, options, ...rest
               <Card
                 img={dt.Photos_Menus[0].cover_page}
                 price={dt.name.substring(0, 15) + "..."}
-                location={dt.Time.start_day + dt.Time.last_day}
+                location={dt.Time.start_day + "-" + dt.Time.last_day}
                 bathroom={dt.Time.start_time + "-" + dt.Time.last_time}
                 id={dt.id}
                 key={dt.id}
@@ -34,7 +33,7 @@ export default function ContainerCards({ type, data, cls, rute, options, ...rest
           : data.estate_result.rows.map((dt) => (
               <Card
                 img={dt.Photos[0].cover_page}
-                price={dt.price}
+                price={`C$ ${dt.price}`}
                 location={dt.Business_Type.type_offer}
                 room={dt.bedrooms}
                 bathroom={dt.bathrooms}

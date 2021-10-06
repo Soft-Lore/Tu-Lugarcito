@@ -32,10 +32,9 @@ exports.create_menu = async (req, res) => {
     });
   }
 
-  const menuType = (await Menu_Type.findOne({ where: { menu_type: req.body.menu } }) || await Menu_Type.create({ menu_type: req.body.menu }))
   
   try {
-
+    const menuType = (await Menu_Type.findOne({ where: { menu_type: req.body.menu } }) || await Menu_Type.create({ menu_type: req.body.menu }))
     const result_photo = await cloudinary.v2.uploader.upload(cover_page);
 
     const menuCreate = await Menu.create({
@@ -51,7 +50,7 @@ exports.create_menu = async (req, res) => {
     res.status(201).json({
       ok: true,
       message: "Menu Registrado exitosamente",
-      menuCreate
+      menu: menuCreate
     });
   } catch (error) {
     res.status(500).json({

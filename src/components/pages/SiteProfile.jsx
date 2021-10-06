@@ -7,7 +7,7 @@ import { useTabs, useSiteProfile, useGetData } from "../hook/index";
 import { Error } from "../atoms/index";
 import { parseJwt } from "../functions/decryptToken";
 import context from "../context/tokenContext";
-import { userOptions } from "../../optionsSelect";
+import { userOptions } from "../../utils/const/sitesFormOpcions";
 import {
   FormCreateSite,
   FormCreateRestaurant,
