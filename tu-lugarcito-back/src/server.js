@@ -14,6 +14,7 @@ app.use(morgan("dev"));
 
 app.use(require("./controllers/Rents/rents.routes"));
 app.use(require("./controllers/User/user.routes"));
+app.use(require('./controllers/Restaurant/resturants.routes'));
 
 app.use(express.static(path.resolve(__dirname, "../public")));
 
