@@ -1,16 +1,15 @@
 import React from "react";
 import { Card } from "../moleculs/index";
 
-export default function ContainerCards({ type, data, cls, profile }) {
+export default function ContainerCards({ type, data, cls, options }) {
   return (
     <main className={"main-sites " + cls}>
       <form className="main-sites__header">
-        <label className="sites-header__lbl">Resultados: 12/12</label>
+        <label className="sites-header__lbl">Resultados encontrados: {data.length}</label>
         <select defaultValue="none" className="sites-header__select">
-          <option value="none" disabled>Filtrar Busqueda</option>
-          <option value="new">Lo mas nuevo</option>
-          <option value="low">Lo de menor costo</option>
-          <option value="high">Lo de mayor costo</option>
+          {
+            options.map(option => <option value={option.name}>{option.value}</option>)
+          }
         </select>
       </form>
       <div className="main-cards">
@@ -18,14 +17,13 @@ export default function ContainerCards({ type, data, cls, profile }) {
           ? data.map((dt) => (
               <Card
                 img={dt.img}
-                price={dt.location}
-                location={dt.name}
-                room={dt.foots}
-                bathroom={dt.drinks}
-                garage={dt.rapid}
+                price={dt.name.substring(0, 15) + "..."}
+                location={dt.days}
+                bathroom={dt.schedule.open + "-" + dt.schedule.close}
                 id={dt.id}
                 key={dt.id}
                 type={type}
+                rute="restaurants"
               />
             ))
           : data.map((dt) => (
@@ -39,6 +37,7 @@ export default function ContainerCards({ type, data, cls, profile }) {
                 id={dt.id}
                 key={dt.id}
                 type={type}
+                rute="inmuebles"
               />
             ))}
       </div>
