@@ -1,35 +1,60 @@
 import React from "react";
-import { useTabs } from "../hook/index";
+import { Spinner } from "../atoms/index";
+import { useTabs, useGetData } from "../hook/index";
 import { Carrousel, CardMenu } from "../moleculs/index";
 import { Footer, BarNavegationRestaurant } from "../organisms/index";
-import { data } from "../../dataRestaurants";
 
 export default function Site({ match }) {
   const { tabs, toggleTab } = useTabs();
-  const dataRestaurant = data.find((d) => d.id === match.params.id);
+  const { data } = useGetData(`/api/get_one_restaurant/${match.params.id}`);
 
   return (
-    <main className="restaurant-site">
-      <Carrousel
-        images={dataRestaurant.images}
-        cls="restaurant-site__slider"
-      />
-      <h1 className="restaurant-site__title">{dataRestaurant.name}</h1>
-      <div className="site-section__menu">
-        <h3 className="restaurant-site__title restaurant-site__menu">Menu</h3>
-        <BarNavegationRestaurant tabs={tabs} toggleTab={toggleTab} />
-        <div className="menu-container">
-          {tabs === 0
-            ? dataRestaurant.platillos.map((dt) => <CardMenu data={dt} />)
-            : tabs === 1
-            ? dataRestaurant.almuerzo.map((dt) => <CardMenu data={dt} />)
-            : tabs === 2
-            ? dataRestaurant.bebidas.map((dt) => <CardMenu data={dt} />)
-            : tabs === 3 &&
-              dataRestaurant.postre.map((dt) => <CardMenu data={dt} />)}
-        </div>
-      </div>
-      <Footer />
-    </main>
+    <>
+      {data ? (
+        <main className="restaurant-site">
+          <Carrousel
+            images={data.images.filter((e) => e != null)}
+            cls="restaurant-site__slider"
+          />
+          <h1 className="restaurant-site__title">{data.name}</h1>
+          <div className="site-section__menu">
+            <h3 className="restaurant-site__title restaurant-site__menu">
+              Menu
+            </h3>
+            {data.Menus.length > 0 ? (
+              <>
+                <BarNavegationRestaurant tabs={tabs} toggleTab={toggleTab} />
+                <div className="menu-container">
+                  {tabs === 0 ? (
+                    <CardMenu
+                      data={data.Menus.filter(
+                        (m) => m.Menus_Type.menu_type === "comida"
+                      )}
+                    />
+                  ) : tabs === 1 ? (
+                    <CardMenu
+                      data={data.Menus.filter(
+                        (m) => m.Menus_Type.menu_type === "bebida"
+                      )}
+                    />
+                  ) : (
+                    <CardMenu
+                      data={data.Menus.filter(
+                        (m) => m.Menus_Type.menu_type === "postre"
+                      )}
+                    />
+                  )}
+                </div>
+              </>
+            ) : (
+              <h3>Aun no añadimos menu en este sitio</h3>
+            )}
+          </div>
+          <Footer />
+        </main>
+      ) : (
+        <Spinner />
+      )}
+    </>
   );
 }

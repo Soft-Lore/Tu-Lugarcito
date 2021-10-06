@@ -15,6 +15,11 @@ export default function OptionsCreate({state}) {
                     <span className="optionCreate-item__title">Casa</span>
                     <p>Publica una casa o departamento para vender o alquilar</p>
                 </div>
+                <div className="optionCreate-item optionCreate-site" onClick={() => state("menu")}>
+                    <img className="optionCreate-item__img" src="https://previews.123rf.com/images/yupiramos/yupiramos1711/yupiramos171106563/89528354-plato-con-dise%C3%B1o-de-ilustraci%C3%B3n-de-vector-de-icono-de-cubiertos.jpg" alt="" />
+                    <span className="optionCreate-item__title">Menu</span>
+                    <p>Añadir platillo, bebida o postre para un restaurante</p>
+                </div>
             </div>
         </div>
     )

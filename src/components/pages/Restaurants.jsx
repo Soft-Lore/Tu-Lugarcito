@@ -5,13 +5,14 @@ import {
   FormContact,
   Footer
 } from "../organisms/index";
-import { data } from "../../dataRestaurants";
-import { useLoading } from "../hook/index";
+// import { data } from "../../dataRestaurants";
+import { useLoading, useGetData } from "../hook/index";
 import { Spinner } from '../atoms/index'
 import { generalOptions } from '../../optionsSelect'
 
 export default function Home() {
   const { loading } = useLoading();
+  const { data} = useGetData('/api/all_restaurant')
 
   return (
     <div className="home">

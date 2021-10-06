@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createSite } from "../../utils/services/sites";
+import { createRestaurant } from "../../utils/services/restaurant";
+import { createMenu } from "../../utils/services/menu";
 
 export default function useSiteProfile(id, setMessage, setSucess, setError) {
   const [site, setSite] = useState({
@@ -15,6 +17,11 @@ export default function useSiteProfile(id, setMessage, setSucess, setError) {
     address: "",
     description: "",
     error: "",
+    name: "",
+    hourOpen: "",
+    hourClose: "",
+    dayOpen: "",
+    dayClose: ""
   });
 
   function handleInput(e) {
@@ -111,11 +118,106 @@ export default function useSiteProfile(id, setMessage, setSucess, setError) {
     }
   }
 
+  const toggleCreateRestaurant = () => {
+    if (!site.cover_page) {
+      setSite({
+        ...site,
+        error: "Favor, seleccione una imagen de portada",
+      });
+    } else if (!site.images || site.images.length < 5) {
+      setSite({
+        ...site,
+        error: "Favor, seleccione como minimo 5 imagenes",
+      });
+    } else if (!site.name) {
+      setSite({
+        ...site,
+        error: "Seleccione un nombre para el restaurante",
+      });
+    } else if (!site.hourOpen) {
+      setSite({
+        ...site,
+        error: "Seleccione hora de apertura del sitio",
+      });
+    } else if (!site.hourClose) {
+      setSite({
+        ...site,
+        error: "Seleccione hora de cierre del sitio",
+      });
+    } else if (!site.dayOpen) {
+      setSite({
+        ...site,
+        error: "Favor, seleccióne el primer día de la semana que abre el negocio",
+      });
+    } else if (!site.dayClose) {
+      setSite({
+        ...site,
+        error: "Favor, seleccióne el ultimo día de la semana que abre el negocio",
+      });
+    } else if (!site.address) {
+      setSite({
+        ...site,
+        error: "La dirección del sitio es requeridas",
+      });
+    } else {
+      setSite({
+        ...site,
+        error: null,
+      });
+      setMessage("Cargando, Favor espere un momento...");
+      createRestaurant(site, id, setMessage, setSucess, setError);
+    }
+  }
+
+  const toggleCreateMenu = () => {
+    if (!site.cover_page) {
+      setSite({
+        ...site,
+        error: "Favor, seleccione una imagen de portada",
+      });
+    } else if (!site.name) {
+      setSite({
+        ...site,
+        error: "Seleccione un nombre para su platillo",
+      });
+    } else if (!site.menu) {
+      setSite({
+        ...site,
+        error: "Seleccione un tipo de menu (bebida, Comida, Postre)",
+      });
+    } else if (!site.address) {
+      setSite({
+        ...site,
+        error: "La dirección del sitio es requeridas",
+      });
+    } else if (!site.price) {
+      setSite({
+        ...site,
+        error: "Favor, asigne un precio a su menu",
+      });
+    } else if (!site.description) {
+      setSite({
+        ...site,
+        error: "Seleccione una description para su menu",
+      });
+    } else {
+      setSite({
+        ...site,
+        error: null,
+      });
+      
+      setMessage("Cargando, Favor espere un momento...");
+      createMenu(site, id, setMessage, setSucess, setError);
+    }
+  }
+
   return {
     site,
     handleInput,
     handleOptions,
     toggleImage,
     toggleSubmit,
+    toggleCreateRestaurant,
+    toggleCreateMenu
   };
 }

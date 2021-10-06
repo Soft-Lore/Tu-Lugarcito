@@ -1,12 +1,12 @@
 import React from 'react'
 import { Header, ContainerCards, FormContact, Footer } from '../organisms/index'
-import { data } from "../../data";
-import { useLoading } from '../hook/index'
+import { useLoading, useGetData } from '../hook/index'
 import { Spinner } from '../atoms/index'
 import { generalOptions } from '../../optionsSelect'
  
 export default function Home() {
     const { loading } = useLoading()
+    const { data} = useGetData('/api/all_business')
 
     return (
         <div className="home">

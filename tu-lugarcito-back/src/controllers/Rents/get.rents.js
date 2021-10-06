@@ -8,7 +8,7 @@ const Estate = require('../../database/models/Estate');
 
 exports.all_estates = async (req, res) => {
     let condition;
-    let limit = req.query.limit || 5;
+    let limit = req.query.limit || 10;
     let offset = req.query.offset || 0;
 
     limit = Number(limit);
@@ -38,6 +38,48 @@ exports.all_estates = async (req, res) => {
             ]
         })
 
+
+        return res.status(200).json({
+            ok: true,
+            estate_result
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+            error
+        });
+    }
+
+}
+
+exports.all_estates_user = async (req, res) => {
+    const id_user = req.params.id;
+
+    try {
+        const estate_result = await Estate.findAndCountAll({
+            where: {
+                UserId: id_user
+            },
+
+            attributes: ['price', 'bedrooms', 'bathrooms', 'backyar', 'garage', 'sold', 'address'],
+
+            include: [
+                {
+                    model: Home_Type,
+                    attributes: ['type_of_rental']
+                },
+                {
+                    model: Business_Type,
+                    attributes: ['type_offer']
+                },
+                {
+                    model: Photo,
+                    attributes: ['cover_page'],
+                    limit: 1
+                }
+            ]
+        })
 
         return res.status(200).json({
             ok: true,
@@ -83,7 +125,17 @@ exports.get_one_estate_user = async (req, res) => {
 
         return res.status(200).json({
             ok: true,
-            user_all_estates
+            price: user_all_estates.price,
+            bathrooms: user_all_estates.bathrooms,
+            bedrooms: user_all_estates.bedrooms,
+            backyar: user_all_estates.backyar,
+            garage: user_all_estates.garage,
+            address: user_all_estates.address,
+            description: user_all_estates.description,
+            homeType: user_all_estates.Home_Type.type_of_rental,
+            businessType: user_all_estates.Business_Type.type_offer,
+            coverPage: user_all_estates.Photos[0].cover_page,
+            images: [...user_all_estates.Photos.map((m, i) => m.images)]
         });
 
     } catch (error) {

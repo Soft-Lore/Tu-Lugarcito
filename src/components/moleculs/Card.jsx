@@ -16,7 +16,8 @@ export default function Card({
   garage,
   id,
   type,
-  rute
+  rute,
+  ...rest
 }) {
   const history = useHistory();
   const cardRef = useRef();
@@ -27,6 +28,7 @@ export default function Card({
       className="card"
       onClick={() => rute && history.push(`/${rute}/${id}`)}
       ref={cardRef}
+      {...rest}
     >
       {show ? (
         <>

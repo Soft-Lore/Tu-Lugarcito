@@ -1,36 +1,36 @@
 import React from "react";
-import { useLoading } from "../hook/index";
+import { useLoading, useGetData } from "../hook/index";
 import { Spinner } from "../atoms/index";
 import { Carrousel } from "../moleculs";
 import { Footer } from "../organisms/index";
-import { data } from "../../data";
+// import { data } from "../../data";
 import { GiShower, GiHomeGarage } from "react-icons/gi";
 import { IoMdBed } from "react-icons/io";
 
 export default function Site({ match }) {
   const { loading } = useLoading();
+  const { data } = useGetData(`/api/one_business/${match.params.id}`)
 
-  const dt = data.find((d) => d.id === match.params.id);
-
+  console.log(data)
+  
   return (
     <>
-      {loading ? (
+      {data && loading ? (
         <>
           <main className="site">
-            <Carrousel images={dt.images} />
+            <Carrousel images={data.images.filter(e => e != null)} />
             <div className="site-section site-section__two">
               <h3 className="site-section__title">VENTA</h3>
-              <p className="site-section__price">{dt.price}</p>
+              <p className="site-section__price">{data.price}</p>
               <button className="site-section__button">Enviar Mensaje</button>
               <div className="site-section__description">
                 <h4 className="site_subtitle site-description__title">
                   Detalles
                 </h4>
                 <p className="site-description__content">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Perferendis expedita natus rerum, sapiente dignissimos nobis
-                  adipisci recusandae ad ratione culpa minus voluptatibus quam,
-                  numquam vero deleniti magnam ullam error. Ab!
+                  {
+                    data.description
+                  }
                 </p>
               </div>
               <div className="site-section__otherDetails">
@@ -40,15 +40,15 @@ export default function Site({ match }) {
                 <div className="site-section__items">
                   <div title="cuartos">
                     <IoMdBed />  
-                    {dt.room}
+                    {data.bedrooms}
                   </div>
                   <div title="duchas">
                     <GiShower />
-                    {dt.bathroom} 
+                    {data.bathrooms} 
                   </div>
                   <div title="garage">
                     <GiHomeGarage />
-                    {dt.garage}
+                    {data.garage ? "Sí" : "No"}
                   </div>
                 </div>
               </div>

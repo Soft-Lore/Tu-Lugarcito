@@ -6,3 +6,4 @@ export { default as Footer } from "./Footer";
 export { default as BarNavegationRestaurant } from "./BarNavegationRestaurant";
 export { default as FormCreateSite } from "./FormCreateSite";
 export { default as FormCreateRestaurant } from "./FormCreateRestaurant";
+export { default as FormMenu } from "./FormMenu";

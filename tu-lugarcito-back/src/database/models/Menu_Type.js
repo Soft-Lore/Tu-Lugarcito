@@ -4,10 +4,10 @@ const { sequelize } = require("../db");
 class Menu_Type extends Model { }
 
 Menu_Type.init({
-    menu: {
+    menu_type: {
         type: DataTypes.ENUM,
-        allowNull: false,
-        values: ['desayuno', 'almuerzo', 'cena', 'bebida', 'postre'],
+        values: ['comida', 'bebida', 'postre'],
+        defaultValue: "comida",
     }
 }, {
     sequelize,

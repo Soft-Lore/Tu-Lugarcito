@@ -8,7 +8,7 @@ env.config();
 app.listen(4000, () => {
   console.log("Server andando tuany");
 
-  sequelize.sync({ force: true }).then(() => {
+  sequelize.sync({ force: false }).then(() => {
     console.log("Nos hemos conectado a la base de datos");
   }).catch(error => {
     console.log('Se ha producido un error', error);

@@ -70,10 +70,6 @@ export const routes = {
       component: Register,
     },
     {
-      path: "/profile/site/:id",
-      component: SiteProfile
-    },
-    {
       path: "",
       component: () => <h1>Error 404</h1>,
     },
