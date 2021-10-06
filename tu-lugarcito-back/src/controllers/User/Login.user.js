@@ -1,4 +1,4 @@
-const { User } = require("../../database/db");
+const User = require("../../database/models/User");
 const bcryptjs = require("bcryptjs");
 const { Token } = require("../../services/tokens");
 

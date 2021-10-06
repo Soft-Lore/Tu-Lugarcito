@@ -1,5 +1,8 @@
-
-const { Estate, Home_Type, Business_Type, Photos, Role, User } = require("../../database/db");
+const Estate = require('../../database/models/Estate');
+const Home_Type = require('../../database/models/Home_type');
+const Business_Type = require('../../database/models/Business_Type');
+const Photo = require('../../database/models/Photo');
+// const { Estate, Home_Type, Business_Type, Photo } = require("../../models/index");
 const cloudinary = require("cloudinary");
 const fs = require("fs-extra");
 
@@ -16,6 +19,7 @@ exports.Create_rent = async (req, res) => {
     const gallery = req.files['gallery'];
 
     let id_user = req.params.id;
+    id_user = Number(id_user);
     let body = req.body;
 
     /** variable where we store the data that cloudinary sends us*/
@@ -34,17 +38,17 @@ exports.Create_rent = async (req, res) => {
             garage: body.garage,
             address: body.address,
             description: body.description,
-            id_user: id_user,
-            id_home: type_home.id,
-            id_business: type_business.id
+            HomeTypeId: type_home.id,
+            BusinessTypeId: type_business.id,
+            UserId: id_user,
         });
 
         const result_cover_page = await cloudinary.v2.uploader.upload(cover_page);
-        await Photos.create({ cover_page: result_cover_page.url, estate_id: estate.id });
+        await Photo.create({ cover_page: result_cover_page.url, EstateId: estate.id });
 
         for (let i = 0; i < gallery.length; i++) {
             result_gallery = await cloudinary.v2.uploader.upload(gallery[i].path);
-            await Photos.create({ images: result_gallery.url, estate_id: estate.id });
+            await Photo.create({ images: result_gallery.url, EstateId: estate.id });
             fs.unlinkSync(gallery[i].path);
         }
         fs.unlinkSync(req.files['cover_page'][0].path);
