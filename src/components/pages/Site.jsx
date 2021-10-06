@@ -4,6 +4,8 @@ import { Spinner } from "../atoms/index";
 import { Carrousel } from "../moleculs";
 import { Footer } from "../organisms/index";
 import { data } from "../../data";
+import { GiShower, GiHomeGarage } from "react-icons/gi";
+import { IoMdBed } from "react-icons/io";
 
 export default function Site({ match }) {
   const { loading } = useLoading();
@@ -35,10 +37,19 @@ export default function Site({ match }) {
                 <h4 className="site_subtitle section-otherDetails__title">
                   Otros Detalles
                 </h4>
-                <div>
-                  <div>{dt.room} Cuartos</div>
-                  <div>{dt.bathroom} duchas</div>
-                  <div>{dt.garage} Garage</div>
+                <div className="site-section__items">
+                  <div title="cuartos">
+                    <IoMdBed />  
+                    {dt.room}
+                  </div>
+                  <div title="duchas">
+                    <GiShower />
+                    {dt.bathroom} 
+                  </div>
+                  <div title="garage">
+                    <GiHomeGarage />
+                    {dt.garage}
+                  </div>
                 </div>
               </div>
               <div className="site-send__message">

@@ -1,14 +1,14 @@
 import React from "react";
 import { Card } from "../moleculs/index";
 
-export default function ContainerCards({ type, data, cls, options }) {
+export default function ContainerCards({ type, data, cls, rute, options }) {
   return (
     <main className={"main-sites " + cls}>
       <form className="main-sites__header">
         <label className="sites-header__lbl">Resultados encontrados: {data.length}</label>
         <select defaultValue="none" className="sites-header__select">
           {
-            options.map(option => <option value={option.name}>{option.value}</option>)
+            options.map((option, index) => <option key={index} value={option.name}>{option.value}</option>)
           }
         </select>
       </form>
@@ -37,7 +37,7 @@ export default function ContainerCards({ type, data, cls, options }) {
                 id={dt.id}
                 key={dt.id}
                 type={type}
-                rute="inmuebles"
+                rute={rute}
               />
             ))}
       </div>

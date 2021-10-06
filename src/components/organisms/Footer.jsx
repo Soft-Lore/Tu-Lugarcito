@@ -15,7 +15,7 @@ export default function Footer() {
                         <img className="footer-ancla__icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/1025px-Instagram-Icon.png" alt="instagram" />
                         <span className="footer-ancla__text footer-ancla__ig-text">Instagram</span>
                     </a>
-                    <a rel="noreferrer" target="_blank" href="https://vm.tiktok.com/ZMRGuqA3t/" className="footer-ancla footer-ancla__tk">
+                    <a rel="noreferrer" target="_blank" href="https://www.tiktok.com/@tu_lugarcito?" className="footer-ancla footer-ancla__tk">
                         <img className="footer-ancla__icon" src="https://cdn.worldvectorlogo.com/logos/tiktok-share-icon-black-1.svg" alt="tiktok" />
                         <span className="footer-ancla__text footer-ancla__ig-text">Tik Tok</span>
                     </a>

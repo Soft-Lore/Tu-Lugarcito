@@ -20,8 +20,6 @@ export default function NavBar() {
   const history = useHistory();
   const location = useLocation()
 
-  console.log(location.pathname)
-
   return (
     <>
       <nav className="nav">

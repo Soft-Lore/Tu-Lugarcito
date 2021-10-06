@@ -1,0 +1,48 @@
+.optionCreate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    min-height: calc(100vh - 110px);
+    background-color: #f3f3f3;
+}
+
+.optionCreate-title {
+    font-family: $title;
+    font-size: 1.2rem;
+}
+
+.optionCreate-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.optionCreate-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 10px 20px;
+    background-color: white;
+    width: 200px;
+    padding: 25px;
+
+    & > p {
+        text-align: center;
+        font-family: $item;
+    }
+}
+
+.optionCreate-item__img {
+    width: 100px;
+}
+
+.optionCreate-item__title {
+    font-family: $title;
+}

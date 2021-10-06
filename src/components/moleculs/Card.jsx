@@ -25,7 +25,7 @@ export default function Card({
   return (
     <div
       className="card"
-      onClick={() => history.push(`/${rute}/${id}`)}
+      onClick={() => rute && history.push(`/${rute}/${id}`)}
       ref={cardRef}
     >
       {show ? (
