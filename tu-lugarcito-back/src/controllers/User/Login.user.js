@@ -1,4 +1,5 @@
 const User = require("../../database/models/User");
+const Role = require("../../database/models/Role");
 const bcryptjs = require("bcryptjs");
 const { Token } = require("../../services/tokens");
 
@@ -13,6 +14,12 @@ exports.Login = async (req, res) => {
   }
   const user = await User.findOne({
     where: { username },
+    include: [
+      {
+        model: Role,
+        attributes: ["role"],
+      },
+    ],
   });
 
   if (!user) {
@@ -41,6 +48,6 @@ exports.Login = async (req, res) => {
     ok: true,
     message: "Usuario autenticado correctamente",
     token,
-    user
+    user,
   });
 };

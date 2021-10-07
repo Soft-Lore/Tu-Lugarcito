@@ -8,9 +8,9 @@ import image from "../../images/register.svg";
 import { useField } from "../hook/index";
 import { Error } from "../atoms/index";
 import { register, googleSignIn } from "../../utils/services/auth";
-import GoogleLogin from 'react-google-login';
-import { FcGoogle } from 'react-icons/fc'
-import { Footer } from '../organisms/index'
+import { GoogleLogin } from "react-google-login";
+import { FcGoogle } from "react-icons/fc";
+import { Footer } from "../organisms/index";
 
 export default function Register() {
   const { form, handleInput } = useField();
@@ -113,17 +113,23 @@ export default function Register() {
           </button>
           <span className="form-span">O</span>
           <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              render={renderProps => (
-                <button className="google-btn" onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                  <FcGoogle/>
-                  <span className="google-btn__title">Resgistrate con Google</span>
-                </button>
-              )}
-              buttonText="Google"
-              onSuccess={googleSignIn}
-              onFailure={googleSignIn}
-              cookiePolicy={'single_host_origin'}
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            render={(renderProps) => (
+              <button
+                className="google-btn"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                <FcGoogle />
+                <span className="google-btn__title">
+                  Resgistrate con Google
+                </span>
+              </button>
+            )}
+            buttonText="Google"
+            onSuccess={googleSignIn}
+            onFailure={googleSignIn}
+            cookiePolicy={"single_host_origin"}
           />
         </form>
       </div>

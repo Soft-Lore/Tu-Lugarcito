@@ -7,15 +7,15 @@ import image from "../../images/login.svg";
 import { useField } from "../hook/index";
 import { Error } from "../atoms/index";
 import { login, googleSignIn } from "../../utils/services/auth";
-import context from '../context/tokenContext'
-import GoogleLogin from 'react-google-login';
-import { FcGoogle } from 'react-icons/fc'
-import { Footer } from '../organisms/index'
+import context from "../context/tokenContext";
+import { GoogleLogin } from "react-google-login";
+import { FcGoogle } from "react-icons/fc";
+import { Footer } from "../organisms/index";
 
 export default function Login() {
   const { form, handleInput } = useField();
   const [error, setError] = useState("");
-  const { getIsToken } = useContext(context)
+  const { getIsToken } = useContext(context);
   const history = useHistory();
   return (
     <>
@@ -82,17 +82,23 @@ export default function Login() {
           </a>
           <span className="form-span">O</span>
           <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              render={renderProps => (
-                <button className="google-btn" onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                  <FcGoogle/>
-                  <span className="google-btn__title">Resgistrate con Google</span>
-                </button>
-              )}
-              buttonText="Google"
-              onSuccess={googleSignIn}
-              onFailure={googleSignIn}
-              cookiePolicy={'single_host_origin'}
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            render={(renderProps) => (
+              <button
+                className="google-btn"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                <FcGoogle />
+                <span className="google-btn__title">
+                  Resgistrate con Google
+                </span>
+              </button>
+            )}
+            buttonText="Google"
+            onSuccess={googleSignIn}
+            onFailure={googleSignIn}
+            cookiePolicy={"single_host_origin"}
           />
         </form>
       </div>

@@ -33,17 +33,17 @@ export const register = async (e, form, setError, setMessage) => {
       })
         .then((response) => response.json())
         .then((resp) => {
-          if(!resp.ok){
-            setError(resp.error || resp.message)
+          if (!resp.ok) {
+            setError(resp.error || resp.message);
 
             setTimeout(() => {
-              setError("")
+              setError("");
             }, 4000);
           } else {
-            setMessage(resp.message)
-  
+            setMessage(resp.message);
+
             setTimeout(() => {
-              setMessage("")
+              setMessage("");
             }, 4000);
           }
         })
@@ -53,7 +53,7 @@ export const register = async (e, form, setError, setMessage) => {
     setError("Favor, revise sus campos");
 
     setTimeout(() => {
-      setError("")
+      setError("");
     }, 4000);
   }
 };
@@ -79,13 +79,12 @@ export const login = async (e, form, setError, getIsToken) => {
           setError(resp?.message || resp.err?.message);
 
           setTimeout(() => {
-            setError("")
+            setError("");
           }, 4000);
-        }
-        else {
-          localStorage.setItem('user', JSON.stringify(resp.user.id))
-          cookies.set("token", resp.token)
-          getIsToken()
+        } else {
+          localStorage.setItem("user", JSON.stringify(resp.user));
+          cookies.set("token", resp.token);
+          getIsToken();
           window.location.replace("/");
         }
       })
@@ -95,39 +94,40 @@ export const login = async (e, form, setError, getIsToken) => {
   } else {
     setError("Favor, revise sus campos");
 
-     setTimeout(() => {
-      setError("")
+    setTimeout(() => {
+      setError("");
     }, 4000);
   }
 };
 
 export const googleSignIn = async (googleData, history, setError) => {
-  const id_token = googleData.tokenObj.id_token
+  const id_token = googleData.tokenObj.id_token;
   const data = new URLSearchParams();
-  data.append("idtoken", id_token)
+  data.append("idtoken", id_token);
 
   await fetch("/google", {
-        method: "POST",
-        body: data,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        json: true,
-      }).then(response => response.json())
-      .then(resp => {
-        if(resp.ok){
-          localStorage.setItem('user', JSON.stringify(resp.usuario.id))
-          cookies.set("token", resp.token)
-          window.location.replace("/");
-        }else {
-          return "Ha ocurrrido un error al registrarse"
-        }
-      })
-      .catch(e => console.log(e))
-}
+    method: "POST",
+    body: data,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    json: true,
+  })
+    .then((response) => response.json())
+    .then((resp) => {
+      if (resp.ok) {
+        localStorage.setItem("user", JSON.stringify(resp.usuario));
+        cookies.set("token", resp.token);
+        window.location.replace("/");
+      } else {
+        return "Ha ocurrrido un error al registrarse";
+      }
+    })
+    .catch((e) => console.log(e));
+};
 
 export const logOut = async () => {
-  cookies.remove("token")
-  localStorage.removeItem('user')
+  cookies.remove("token");
+  localStorage.removeItem("user");
   window.location.replace("/");
-}
+};

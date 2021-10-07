@@ -71,6 +71,15 @@
   }
 }
 
+.nav-collapse__button,
+.nav-collapse__list-item,
+.nav-collapse__list-show {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
 .nav-collapse__button {
   height: max-content;
   background-color: $primary;
@@ -79,7 +88,6 @@
   border: 1px solid white;
   padding: 8px 15px;
   border-radius: 5px;
-  cursor: pointer;
   transition: background-color 0.1s ease-in;
   margin: 0 3px;
 

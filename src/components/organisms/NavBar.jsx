@@ -1,29 +1,41 @@
 import React, { useState, useContext } from "react";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import logo from "../../images/logo-white.png";
 import { BiHome } from "react-icons/bi";
 import { IoMdRestaurant } from "react-icons/io";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
 import { logOut } from "../../utils/services/auth";
-import context from "../context/tokenContext";
 import { useModal } from "../hook/index";
 import { ModalComponent } from "../moleculs/index";
-import { parseJwt } from '../functions/decryptToken'
+import context from "../context/tokenContext";
+import { parseJwt } from "../functions/decryptToken";
 
 export default function NavBar() {
   const [menu, setMenu] = useState(false);
   const [subMenu, setSubMenu] = useState(false);
-  const { token } = useContext(context);
   const [active, toggleActive] = useModal();
-  const jwt = token ? parseJwt(token) : undefined;
+  const user = JSON.parse(localStorage.getItem("user"));
   const history = useHistory();
-  const location = useLocation()
+  const location = useLocation();
+  const { token } = useContext(context);
+  const jwt = token ? parseJwt(token) : undefined;
+
+  const toggleItemMenu = (rute) => {
+    history.push(rute);
+    setSubMenu(false);
+    setMenu(false);
+  };
 
   return (
     <>
       <nav className="nav">
-        <img src={logo} alt="logo" className="nav-logo" onClick={() => history.push("/inmuebles")} />
+        <img
+          src={logo}
+          alt="logo"
+          className="nav-logo"
+          onClick={() => history.push("/inmuebles")}
+        />
         <div
           className={!menu ? "nav-collapse" : "nav-collapse nav-collapse__show"}
         >
@@ -35,53 +47,59 @@ export default function NavBar() {
             }
           >
             <li>
-              <NavLink
+              <button
                 className={
-                  location.pathname === "/inmuebles" ? !menu
-                  ? "nav-collapse__list-item nav-active"
-                  : "nav-collapse__list-item nav-collapse__list-item__show nav-active" : !menu
-                  ? "nav-collapse__list-item"
-                  : "nav-collapse__list-item nav-collapse__list-item__show"
+                  location.pathname === "/inmuebles"
+                    ? !menu
+                      ? "nav-collapse__list-item nav-active"
+                      : "nav-collapse__list-item nav-collapse__list-item__show nav-active"
+                    : !menu
+                    ? "nav-collapse__list-item"
+                    : "nav-collapse__list-item nav-collapse__list-item__show"
                 }
-                to="/inmuebles"
+                onClick={() => toggleItemMenu("/inmuebles")}
               >
                 <BiHome />
                 Inmuebles
-              </NavLink>
+              </button>
             </li>
             <li>
-              <NavLink
+              <button
                 className={
-                  location.pathname === "/restaurants" ? !menu
-                  ? "nav-collapse__list-item nav-active"
-                  : "nav-collapse__list-item nav-collapse__list-item__show nav-active" : !menu
-                  ? "nav-collapse__list-item"
-                  : "nav-collapse__list-item nav-collapse__list-item__show"
+                  location.pathname === "/restaurants"
+                    ? !menu
+                      ? "nav-collapse__list-item nav-active"
+                      : "nav-collapse__list-item nav-collapse__list-item__show nav-active"
+                    : !menu
+                    ? "nav-collapse__list-item"
+                    : "nav-collapse__list-item nav-collapse__list-item__show"
                 }
-                to="/restaurants"
+                onClick={() => toggleItemMenu("/restaurants")}
               >
                 <IoMdRestaurant />
                 Restaurantes
-              </NavLink>
+              </button>
             </li>
 
             <li>
-              <NavLink
+              <button
                 className={
-                  location.pathname === "/about-me" ? !menu
-                  ? "nav-collapse__list-item nav-active"
-                  : "nav-collapse__list-item nav-collapse__list-item__show nav-active" : !menu
-                  ? "nav-collapse__list-item"
-                  : "nav-collapse__list-item nav-collapse__list-item__show"
+                  location.pathname === "/about-me"
+                    ? !menu
+                      ? "nav-collapse__list-item nav-active"
+                      : "nav-collapse__list-item nav-collapse__list-item__show nav-active"
+                    : !menu
+                    ? "nav-collapse__list-item"
+                    : "nav-collapse__list-item nav-collapse__list-item__show"
                 }
-                to="/about-me"
+                onClick={() => toggleItemMenu("/about-me")}
               >
                 <AiOutlineUsergroupAdd />
                 Acerca de
-              </NavLink>
+              </button>
             </li>
           </ul>
-          {token ? (
+          {user && token ? (
             <div className="nav-container__user">
               <div className="nav-user" onClick={() => setSubMenu(!subMenu)}>
                 <img
@@ -89,7 +107,9 @@ export default function NavBar() {
                   alt="user"
                   src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                 />
-                <span className="nav-username">{jwt?.user?.username || jwt?.name}</span>
+                <span className="nav-username">
+                  {jwt?.user?.username || jwt?.name}
+                </span>
               </div>
               <ul
                 className={
@@ -99,11 +119,19 @@ export default function NavBar() {
                 }
               >
                 <li className="user-options__list">
-                  <NavLink to="#">Perfil</NavLink>
+                  <button onClick={() => toggleItemMenu("/profile")}>
+                    Perfil
+                  </button>
                 </li>
-                <li className="user-options__list">
-                  <NavLink to="/profile/site/fsdf">Mis Sitios</NavLink>
-                </li>
+                {user?.Role?.role === "admin" || user?.role === "admin" ? (
+                  <li className="user-options__list">
+                    <button
+                      onClick={() => toggleItemMenu("/profile/site/fsdf")}
+                    >
+                      Mis Sitios
+                    </button>
+                  </li>
+                ) : null}
                 <li className="user-options__list">
                   <button onClick={toggleActive}>Cerrar Sesion</button>
                 </li>
@@ -140,7 +168,10 @@ export default function NavBar() {
         title={"¿Estas seguro que deseas Cerrar sesión?"}
         work={logOut}
       />
-      <div onClick={() => setSubMenu(!subMenu)} className={subMenu ? "background-submenu" : null}></div>
+      <div
+        onClick={() => setSubMenu(!subMenu)}
+        className={subMenu ? "background-submenu" : null}
+      ></div>
     </>
   );
 }

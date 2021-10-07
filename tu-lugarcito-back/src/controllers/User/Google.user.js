@@ -33,7 +33,17 @@ exports.google = async (req, res) => {
   });
 
   try {
-    const user = await User.findOne({ where: { email: googleUser.email } });
+    const user = await User.findOne({
+      where: {
+        email: googleUser.email,
+      },
+      include: [
+        {
+          model: Role,
+          attributes: ["role"],
+        },
+      ],
+    });
 
     if (user) {
       if (user.verified === false) {
@@ -49,28 +59,30 @@ exports.google = async (req, res) => {
         return res.json({
           ok: true,
           usuario: user,
-          token,
+          token
         });
       }
     } else {
       const role =
-        (await Role.findOne({ where: { role: 'cliente' } })) ||
-        (await Role.create({ role: 'cliente' }));
+        (await Role.findOne({ where: { role: "cliente" } })) ||
+        (await Role.create({ role: "cliente" }));
+
+      // console.log(role)
 
       User.create({
         username: googleUser.username,
         email: googleUser.email,
         password: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-        verified: true,
+        verified: null,
         google: true,
-        roleid: role.id,
+        RoleId: role.id,
       });
 
-      res.cookie("token", token).status(201).json({
+      res.status(201).json({
         ok: true,
         message: "Registro Excitoso!",
         token,
-        role: role.role
+        usuario: role
       });
     }
   } catch (error) {
