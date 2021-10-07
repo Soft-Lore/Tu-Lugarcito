@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "../moleculs/index";
-import { Spinner } from '../atoms/index'
+import { Spinner } from '../atoms/index';
 
 export default function ContainerCards({ type, data, cls, rute, options, ...rest }) {
   return (

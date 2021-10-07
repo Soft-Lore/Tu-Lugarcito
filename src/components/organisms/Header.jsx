@@ -1,6 +1,9 @@
 import React from "react";
+import { useHistory } from 'react-router'
 
-export default function Header({title, keyword, content, ...rest}) {
+export default function Header({title, keyword, content, btn, url, ...rest}) {
+  const history = useHistory();
+
   return (
     <header>
       <section className="header" {...rest}>
@@ -11,8 +14,8 @@ export default function Header({title, keyword, content, ...rest}) {
           <p className="header-content__paragraph">
            {content}
           </p>
-          <button className="nav-collapse__button header-content__button">
-            Ver más
+          <button onClick={() => history.push(url)} className="nav-collapse__button header-content__button">
+            {btn}
           </button>
         </article>
       </section>

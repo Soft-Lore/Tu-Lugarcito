@@ -8,6 +8,7 @@ import {
   RestaurantSite,
   SiteProfile
 } from "../pages/index";
+import { Error404 } from '../atoms/index'
 
 export const routes = {
   root: [
@@ -37,7 +38,7 @@ export const routes = {
     },
     {
       path: "",
-      component: () => <h1>Error 404</h1>,
+      component: () => <Error404 />,
     },
   ],
   notRegister: [
@@ -71,7 +72,7 @@ export const routes = {
     },
     {
       path: "",
-      component: () => <h1>Error 404</h1>,
+      component: () =>  <Error404 />,
     },
   ],
 };

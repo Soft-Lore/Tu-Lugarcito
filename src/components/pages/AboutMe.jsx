@@ -13,6 +13,8 @@ export default function AboutMe() {
       {loading ? (
         <>
           <Header
+            btn="Inmuebles"
+            url="/inmuebles"
             className="header header-aboutMe"
             title="¡Todos conocemos a un "
             keyword="Foráneo!"

@@ -10,7 +10,7 @@ export default function CardMenu({ data }) {
           </div>
           <div className="card-info">
             <div className="card-info__food">{dt.name}</div>
-            <div className="card-info__price">{dt.price}</div>
+            <div className="card-info__price">C$ {dt.price}</div>
           </div>
           <div className="card-description">
             <div className="card-info__description">{dt.description}</div>

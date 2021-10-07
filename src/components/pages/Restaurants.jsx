@@ -5,7 +5,6 @@ import {
   FormContact,
   Footer
 } from "../organisms/index";
-// import { data } from "../../dataRestaurants";
 import { useLoading, useGetData } from "../hook/index";
 import { Spinner } from '../atoms/index'
 import { generalOptions } from '../../utils/const/sitesFormOpcions'
@@ -19,6 +18,8 @@ export default function Home() {
       {loading ? (
         <>
           <Header
+          btn="Acerca de"
+          url="/about-me"
             className="header header-restaurants"
             title="¡Si un día sientes un vacio come es "
             keyword="hambre!"

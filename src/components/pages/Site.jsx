@@ -11,8 +11,6 @@ export default function Site({ match }) {
   const { loading } = useLoading();
   const { data } = useGetData(`/api/one_business/${match.params.id}`)
 
-  console.log(data)
-  
   return (
     <>
       {data && loading ? (
@@ -20,8 +18,11 @@ export default function Site({ match }) {
           <main className="site">
             <Carrousel images={data.images.filter(e => e != null)} />
             <div className="site-section site-section__two">
-              <h3 className="site-section__title">VENTA</h3>
-              <p className="site-section__price">{data.price}</p>
+              <div className="site-container__header">
+              <h3 className="site-section__title">{data.businessType}</h3>
+              <h3 className="site-section__title">{data.homeType}</h3>
+              </div>
+              <p className="site-section__price">C$ {data.price}</p>
               <button className="site-section__button">Enviar Mensaje</button>
               <div className="site-section__description">
                 <h4 className="site_subtitle site-description__title">
@@ -51,6 +52,16 @@ export default function Site({ match }) {
                     {data.garage ? "Sí" : "No"}
                   </div>
                 </div>
+                <div className="site-section__description">
+                <h4 className="site_subtitle site-description__title">
+                  Dirección: 
+                </h4>
+                <p className="site-description__content">
+                  {
+                    data.address
+                  }
+                </p>
+              </div>
               </div>
               <div className="site-send__message">
                 <textarea

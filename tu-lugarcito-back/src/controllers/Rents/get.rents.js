@@ -55,6 +55,111 @@ exports.all_estates = async (req, res) => {
   }
 };
 
+exports.all_estates_asc = async (req, res) => {
+  let limit = req.query.limit || 10;
+  let offset = req.query.offset || 0;
+
+  limit = Number(limit);
+  offset = Number(offset);
+
+  try {
+    const estate_result = await Estate.findAndCountAll({
+      attributes: [
+        "price",
+        "bedrooms",
+        "bathrooms",
+        "backyar",
+        "garage",
+        "sold",
+        "address",
+      ],
+      limit: limit,
+      offset: offset,
+      order: [
+        ['price', 'ASC'],
+     ],
+      include: [
+        {
+          model: Home_Type,
+          attributes: ["type_of_rental"],
+        },
+        {
+          model: Business_Type,
+          attributes: ["type_offer"],
+        },
+        {
+          model: Photo,
+          attributes: ["cover_page"],
+          limit: 1,
+        },
+      ],
+    });
+
+    return res.status(200).json({
+      ok: true,
+      estate_result,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      error,
+    });
+  }
+};
+
+exports.all_estates_dec = async (req, res) => {
+  let limit = req.query.limit || 10;
+  let offset = req.query.offset || 0;
+
+  limit = Number(limit);
+  offset = Number(offset);
+
+  try {
+    const estate_result = await Estate.findAndCountAll({
+      attributes: [
+        "price",
+        "bedrooms",
+        "bathrooms",
+        "backyar",
+        "garage",
+        "sold",
+        "address",
+      ],
+      limit: limit,
+      offset: offset,
+      order: [
+        ['price', 'DESC'],
+     ],
+      include: [
+        {
+          model: Home_Type,
+          attributes: ["type_of_rental"],
+        },
+        {
+          model: Business_Type,
+          attributes: ["type_offer"],
+        },
+        {
+          model: Photo,
+          attributes: ["cover_page"],
+          limit: 1,
+        },
+      ],
+    });
+
+    return res.status(200).json({
+      ok: true,
+      estate_result,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      error,
+    });
+  }
+};
+
+
 exports.all_estates_user = async (req, res) => {
   const id_user = req.params.id;
 

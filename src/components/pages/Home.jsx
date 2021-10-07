@@ -13,8 +13,8 @@ export default function Home() {
          {
              loading ? (
                  <>
-                <Header title="¡Encuentra el lugar idoneo para " keyword="hospedarte!" content="La misión empresarial es el conjunto de objetivos generales y principios de trabajos para avanzar en una organización"/>
-                <ContainerCards type="estate" data={data} rute={"inmuebles"} options={generalOptions} />
+                <Header btn="Restaurantes" url="/restaurants" title="¡Encuentra el lugar idoneo para " keyword="hospedarte!" content="La misión empresarial es el conjunto de objetivos generales y principios de trabajos para avanzar en una organización"/>
+                <ContainerCards type="estate" url={`/api/all_business/`} data={data} rute={"inmuebles"} options={generalOptions} />
                 <FormContact />
                 <Footer />
                 </>
