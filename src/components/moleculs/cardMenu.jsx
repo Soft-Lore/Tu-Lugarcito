@@ -6,7 +6,7 @@ export default function CardMenu({ data }) {
       {data.map((dt) => (
         <div className="card__menu" key={dt.id}>
           <div className="card-container__image">
-            <img className="card-image" src={dt.photo} alt="food" />
+            <img className="card-image" src={dt.photo} alt="comida" />
           </div>
           <div className="card-info">
             <div className="card-info__food">{dt.name}</div>
